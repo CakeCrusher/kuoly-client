@@ -1,0 +1,115 @@
+import {
+  ApolloClient,
+  ApolloProvider,
+  gql,
+  HttpLink,
+  InMemoryCache,
+  useQuery,
+  split,
+} from "@apollo/client";
+import { createContext, useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { createUploadLink } from "apollo-upload-client";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
+import * as ws from "ws";
+
+// export const createApolloClient = () => {
+//   const link = new HttpLink({
+//     uri: "http://localhost:4000/graphql",
+//     headers: {
+//       authorization: UserId(),
+//     },
+//   });
+//   return new ApolloClient({
+//     link,
+//     cache: new InMemoryCache(),
+//   });
+// };
+
+type UserContext = {
+  createApolloClient: () => ApolloClient<any>;
+  registerUser: () => string;
+  cache: InMemoryCache;
+};
+export const useProvideUser = (): UserContext => {
+  const [userId, setUserId] = useState(null);
+
+  const cache = new InMemoryCache();
+  const createApolloClient = () => {
+    const httpLink = createUploadLink({
+      uri: "http://localhost:4000/graphql",
+      headers: getUserHeaders(),
+    });
+    const wsUri =
+      process.env.NODE_ENV === "development"
+        ? "ws://localhost:4000/graphql"
+        : "wss://kuoly.herokuapp.com/graphql";
+    const wsLink = process.browser
+      ? new WebSocketLink({
+          uri: wsUri,
+          options: {
+            reconnect: true,
+            connectionParams: {
+              authToken: userId,
+            },
+          },
+        })
+      : null;
+    const splitLink = process.browser
+      ? split(
+          ({ query }) => {
+            const definition = getMainDefinition(query);
+            return (
+              definition.kind === "OperationDefinition" &&
+              definition.operation === "subscription"
+            );
+          },
+          wsLink,
+          httpLink
+        )
+      : httpLink;
+
+    return new ApolloClient({
+      link: splitLink,
+      cache,
+    });
+  };
+
+  const getUserHeaders = () => {
+    if (!userId) return null;
+    return {
+      authorization: userId,
+    };
+  };
+
+  const registerUser = () => {
+    let fetchedUserId = localStorage.getItem("authorization");
+    if (!fetchedUserId) {
+      // userId = uuidv4();
+      fetchedUserId = "6a3a2967-0258-4caf-8fef-f844c060b2f2";
+      localStorage.setItem("authorization", fetchedUserId);
+    }
+    setUserId(fetchedUserId);
+    return fetchedUserId;
+  };
+
+  return { createApolloClient, registerUser, cache };
+};
+
+const userContext = createContext<null | UserContext>(null);
+
+export function UserProvider({ children }) {
+  const user = useProvideUser();
+  return (
+    <userContext.Provider value={user}>
+      <ApolloProvider client={user.createApolloClient()}>
+        {children}
+      </ApolloProvider>
+    </userContext.Provider>
+  );
+}
+
+export const useUser = () => {
+  return useContext(userContext);
+};
