@@ -4,16 +4,15 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-import { useUser } from "../lib/UserProvider";
+import { useUser } from "../../lib/UserProvider";
 import { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { apolloHookErrorHandler } from "../utils/functions";
-import { useMarkedForDeletion, useRemoveMFD } from "../state/store";
-import { MY_CATALOGUES } from "../graphql/schemas";
-import CreateCatalogueButton from "./CreateCatalogueButton/CreateCatalogueButton";
-import UndoNotification from "./Undo/UndoNotification";
+import { apolloHookErrorHandler } from "../../utils/functions";
+import { useMarkedForDeletion, useRemoveMFD } from "../../state/store";
+import { MY_CATALOGUES } from "../../graphql/schemas";
+import { Feedback, UndoNotification, CreateCatalogueButton } from "..";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const { registerUser, cache } = useUser();
   useEffect(() => {
     registerUser();
@@ -90,7 +89,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <strong className="contact">contact@kuoly.com</strong>
             </a>
           </div>
-          {/* <Feedback /> */}
+          <Feedback />
         </div>
         <div className="misc-links">
           <Link href="/api">
@@ -108,4 +107,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <UndoNotification />
     </div>
   );
-}
+};
+
+export default Layout;

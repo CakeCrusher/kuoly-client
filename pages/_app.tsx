@@ -4,6 +4,26 @@ import Link from "next/link";
 import "../styles/layout.less";
 import "../styles/index.less";
 import "../components/Undo/UndoNotification.less";
+import "../components/Feedback/Feedback.less";
+import "../components/Modal/Modal.less";
+import "../components/ToggleEdit/ToggleEdit.less";
+import "../components/fields/TextreaInput/TextareaInput.less";
+import "../components/fields/TextInput/TextInput.less";
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
+// import "../components"
 
 import {
   ApolloProvider,
@@ -13,7 +33,7 @@ import {
 } from "@apollo/client";
 import { UserProvider } from "../lib/UserProvider";
 import { useEffect } from "react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout/Layout";
 
 // TODO: Create a use effect that gets the user from the cookie
 // TODO: Set the state of user

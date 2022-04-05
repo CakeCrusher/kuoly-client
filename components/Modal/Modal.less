@@ -1,0 +1,70 @@
+@import "../../App.less";
+
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  transition: opacity 0.125s, padding-top 0.125s;
+  opacity: 0.1%;
+  padding-top: 100px;
+  z-index: 999;
+  color: #pallette[dark];
+
+  &.show {
+    opacity: 100%;
+    padding-top: 0px;
+  }
+
+  &.hide {
+    display: none;
+  }
+
+  .modal-dialog {
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    width: auto !important;
+    background-color: white;
+    display: flex;
+    max-width: none !important;
+    justify-content: center;
+    margin: 2rem auto;
+    height: fit-content;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: none;
+    @media @mobile {
+      border-radius: 0;
+    }
+
+    .modal-content {
+      min-width: 10rem;
+
+      .modal-header {
+        display: flex;
+        position: relative;
+        font-size: 1rem;
+        .close {
+          position: absolute;
+          color: #pallette[grey];
+          right: -2.5rem;
+          top: -1.5rem;
+          border-radius: 5px;
+        }
+      }
+
+      .modal-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 95vw;
+        font-size: 1rem;
+      }
+    }
+  }
+}
