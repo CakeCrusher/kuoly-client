@@ -9,7 +9,7 @@ import "../components/Modal/Modal.less";
 import "../components/ToggleEdit/ToggleEdit.less";
 import "../components/fields/TextreaInput/TextareaInput.less";
 import "../components/fields/TextInput/TextInput.less";
-// import "../components"
+import "./indexPage.less";
 // import "../components"
 // import "../components"
 // import "../components"

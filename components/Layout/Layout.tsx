@@ -51,6 +51,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const myCatalogues = useQuery(MY_CATALOGUES);
   apolloHookErrorHandler("layout.tsx", myCatalogues.error);
+
   return (
     <div className="layoutContainer">
       <div id="navbar">
