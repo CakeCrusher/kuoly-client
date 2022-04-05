@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { createUploadLink } from "apollo-upload-client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { cache } from "../graphql/clientConfig";
 import * as ws from "ws";
 
 // export const createApolloClient = () => {
@@ -37,7 +38,6 @@ type UserContext = {
 export const useProvideUser = (): UserContext => {
   const [userId, setUserId] = useState(null);
 
-  const cache = new InMemoryCache();
   const createApolloClient = () => {
     const linkUri =
       process.env.NODE_ENV === "development"

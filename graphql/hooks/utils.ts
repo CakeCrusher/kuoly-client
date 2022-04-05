@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { CREATE_FEEDBACK, CREATE_METRIC } from "../../graphql/schemas";
+import { CREATE_FEEDBACK, CREATE_METRIC } from "../schemas";
 import { apolloHookErrorHandler } from "../../utils/functions";
 
 const UtilsHooks: UtilsHook.FC = () => {

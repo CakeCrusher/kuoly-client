@@ -5,7 +5,7 @@ import {
   EDIT_LISTING,
   EDIT_LISTING_FILE,
   UPDATE_LISTING_ORDER,
-} from "../../graphql/schemas";
+} from "../schemas";
 import {
   handleDeletion,
   endOrdering,
@@ -136,7 +136,7 @@ const ListingApolloHooks: ListingHook.FC = () => {
       "name",
       setRemoveMFD,
       markedForDeletion,
-      setMarkedForDeletion,
+      setMarkedForDeletion
     );
   };
 

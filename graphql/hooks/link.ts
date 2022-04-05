@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ADD_LINK, EDIT_LINK, REMOVE_LINK } from "../../graphql/schemas";
+import { ADD_LINK, EDIT_LINK, REMOVE_LINK } from "../schemas";
 import {
   handleDeletion,
   updateCatalogueCache,

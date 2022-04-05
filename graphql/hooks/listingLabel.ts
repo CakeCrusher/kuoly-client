@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ADD_LISTING_LABEL, REMOVE_LISTING_LABEL } from "../../graphql/schemas";
+import { ADD_LISTING_LABEL, REMOVE_LISTING_LABEL } from "../schemas";
 import { handleDeletion, apolloHookErrorHandler } from "../../utils/functions";
 import { cache } from "../clientConfig";
 import { dummyListingLabel } from "../../utils/references";

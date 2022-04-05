@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
-import { ALL_CATALOGUE_FIELDS } from "../../graphql/fragments";
+import { ALL_CATALOGUE_FIELDS } from "../fragments";
 import {
   catalogueFEParser,
   removeFromCacheIfMFD,
@@ -11,7 +11,7 @@ import {
   UPDATE_CATALOGUE,
   UPDATE_CATALOGUE_FILES,
   GET_CATALOGUE,
-} from "../../graphql/schemas";
+} from "../schemas";
 import { useFieldEditing, useMarkedForDeletion } from "../../state/store";
 import { apolloHookErrorHandler } from "../../utils/functions";
 
@@ -83,7 +83,7 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
     } else {
       apolloHookErrorHandler(
         "incrementCatalogueViewsMuation",
-        incrrementCatalogueViewsError,
+        incrrementCatalogueViewsError
       );
     }
   }
