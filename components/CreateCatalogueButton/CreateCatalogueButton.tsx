@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useUser } from "../lib/UserProvider";
-import { CREATE_CATALOGUE, MY_CATALOGUES } from "../graphql/schemas";
-import { apolloHookErrorHandler } from "../utils/functions";
+import { useUser } from "../../lib/UserProvider";
+import { CREATE_CATALOGUE, MY_CATALOGUES } from "../../graphql/schemas";
+import { apolloHookErrorHandler } from "../../utils/functions";
 
 type Props = {
   className?: string;

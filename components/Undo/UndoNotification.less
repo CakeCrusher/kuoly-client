@@ -1,0 +1,28 @@
+@import "../../styles/App.less";
+
+.notification-container {
+  position: fixed;
+  width: 100vw;
+  bottom: 1rem;
+  pointer-events: none;
+  row-gap: 0.5rem;
+  .undo-container {
+    font-size: 1rem;
+    pointer-events: all;
+    background-color: #pallette[silver];
+    border-radius: 4px;
+    padding-left: 1rem;
+    border: 1px solid #pallette[grey];
+    max-width: 100vw;
+    .undo-button {
+      background-color: none;
+      border: none;
+      color: #pallette[pri];
+      font-weight: bold;
+      padding: 1rem 2rem;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

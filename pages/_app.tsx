@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import "../styles/layout.less";
 import "../styles/index.less";
+import "../components/Undo/UndoNotification.less";
 
 import {
   ApolloProvider,

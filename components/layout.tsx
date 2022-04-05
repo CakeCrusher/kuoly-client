@@ -10,15 +10,10 @@ import { gql, useQuery } from "@apollo/client";
 import { apolloHookErrorHandler } from "../utils/functions";
 import { useMarkedForDeletion, useRemoveMFD } from "../state/store";
 import { MY_CATALOGUES } from "../graphql/schemas";
-import CreateCatalogueButton from "./CreateCatalogueButton";
+import CreateCatalogueButton from "./CreateCatalogueButton/CreateCatalogueButton";
+import UndoNotification from "./Undo/UndoNotification";
 
-export default function Layout({
-  children,
-  home,
-}: {
-  children: React.ReactNode;
-  home?: boolean;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const { registerUser, cache } = useUser();
   useEffect(() => {
     registerUser();
@@ -110,7 +105,7 @@ export default function Layout({
           </a>
         </div>
       </div>
-      {/* <UndoNotification /> */}
+      <UndoNotification />
     </div>
   );
 }

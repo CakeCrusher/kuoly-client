@@ -9,7 +9,7 @@
 // export { default as ToggleEdit } from "./ToggleEdit/ToggleEdit";
 // export { default as Modal } from "./Modal/Modal";
 // export { default as DeleteCatalogueButton } from "./DeleteCatalogueButton/DeleteCatalogueButton";
-export { default as CreateCatalogueButton } from "./CreateCatalogueButton";
+export { default as CreateCatalogueButton } from "./CreateCatalogueButton/CreateCatalogueButton";
 // export { default as LabelContainer } from "./Labels/LabelContainer";
 // export { default as Label } from "./Labels/Label";
 // export { default as TextInput } from "./fields/TextInput/TextInput";
@@ -20,7 +20,7 @@ export { default as CreateCatalogueButton } from "./CreateCatalogueButton";
 // export { default as ListingCard } from "./Listings/ListingCard/ListingCard";
 // export { default as ListingCardsContainer } from "./Listings/ListingCardsContainer/ListingCardsContainer";
 // export { default as AddListing } from "./Listings/AddListing/AddListing";
-// export { default as UndoNotification } from "./Undo/UndoNotification";
+export { default as UndoNotification } from "./Undo/UndoNotification";
 
 // export { default as Checkbox } from "./fields/Checkbox/Checkbox";
 // export { default as TextareaInput } from "./fields/TextreaInput/TextareaInput";
