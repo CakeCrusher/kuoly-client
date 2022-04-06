@@ -1,5 +1,7 @@
 const withLess = require("next-with-less");
 
 module.exports = withLess({
-  /* config options here */
+  env: {
+    BACKEND_URL: process.env.BACKEND_URL,
+  },
 });
