@@ -39,6 +39,7 @@ export const useProvideUser = (): UserContext => {
   const [userId, setUserId] = useState(null);
 
   const createApolloClient = () => {
+    console.log("process.env.BACKEND_URL", process.env.BACKEND_URL);
     const linkUri =
       process.env.NODE_ENV === "development"
         ? "http://localhost:4000/graphql"
