@@ -1,0 +1,38 @@
+@import "../App.less";
+
+.api-page-container {
+  padding: 1rem 6rem;
+  @media @mobile {
+    padding: 1rem;
+  }
+  background-color: #pallette[bg];
+  .api-title {
+    margin: 0.5rem !important;
+    margin-left: 0 !important;
+  }
+  .video {
+    border: 0;
+    width: 560px;
+    height: 315px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    @media @laptop {
+      width: (560px / 1.4);
+      height: (315px / 1.4);
+    }
+    @media @mobile {
+      width: (560px / 1.8);
+      height: (315px / 1.8);
+    }
+  }
+  .api-link {
+    color: #pallette[sec];
+    strong {
+      color: #pallette[pri];
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

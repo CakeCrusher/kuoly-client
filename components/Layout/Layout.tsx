@@ -87,7 +87,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Feedback />
         </div>
         <div className="misc-links">
-          <Link href="/api">
+          <Link href="/api-info">
             <a className="footer-link">Kuoly API</a>
           </Link>
           <a
