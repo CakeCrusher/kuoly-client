@@ -75,12 +75,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <div className="false-nav" />
-      <ul>
-        {myCatalogues.data &&
-          myCatalogues.data.myCatalogues?.map((catalogues) => (
-            <li key={catalogues.id}>{catalogues.title}</li>
-          ))}
-      </ul>
       {children}
       <div className="footer-wrapper">
         <div id="footer">

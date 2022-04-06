@@ -1,0 +1,35 @@
+@import "../../App.less";
+
+.catalogue-cards-container {
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media @mobile {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .catalogue-card-wrapper {
+    cursor: pointer;
+    height: 22rem;
+    display: flex;
+    width: 20rem;
+
+    .add-icon {
+      color: #pallette[sec];
+    }
+
+    .add-catalogue {
+      justify-content: center !important;
+      align-items: center !important;
+
+      .card-body {
+        justify-content: center !important;
+        align-items: center !important;
+        height: auto !important;
+      }
+    }
+  }
+}

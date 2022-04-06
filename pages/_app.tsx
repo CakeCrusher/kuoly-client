@@ -3,17 +3,17 @@ import Link from "next/link";
 
 import "../styles/layout.less";
 import "../styles/index.less";
+import "./indexPage.less";
+import "./catalogues.less";
+import "../containers/CatalogueSelectItems/CatalogueSelectItems.less";
 import "../components/Undo/UndoNotification.less";
 import "../components/Feedback/Feedback.less";
 import "../components/Modal/Modal.less";
 import "../components/ToggleEdit/ToggleEdit.less";
 import "../components/fields/TextreaInput/TextareaInput.less";
 import "../components/fields/TextInput/TextInput.less";
-import "./indexPage.less";
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
+import "../components/CatalogueCard/CatalogueCard.less";
+import "../components/DeleteCatalogueButton/DeleteCatalogueButton.less";
 // import "../components"
 // import "../components"
 // import "../components"
