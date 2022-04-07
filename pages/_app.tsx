@@ -6,6 +6,7 @@ import "../styles/index.less";
 import "./indexPage.less";
 import "./catalogues.less";
 import "./api-info.less";
+import "./ctg.less";
 import "../containers/CatalogueSelectItems/CatalogueSelectItems.less";
 import "../components/Undo/UndoNotification.less";
 import "../components/Feedback/Feedback.less";

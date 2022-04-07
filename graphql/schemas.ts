@@ -15,6 +15,18 @@ export const GET_JWT = gql`
   }
 `;
 
+export const GET_ALL_CATALOGUE_IDS = gql`
+  query Catalogues($id: ID, $edit_id: String) {
+    catalogues(id: $id, edit_id: $edit_id) {
+      id
+      edit_id
+      listings {
+        id
+      }
+    }
+  }
+`;
+
 export const GET_CATALOGUE = gql`
   ${ALL_CATALOGUE_FIELDS}
   query Catalogues($id: ID, $edit_id: String) {

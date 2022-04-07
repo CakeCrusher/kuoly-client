@@ -118,3 +118,18 @@ export function UserProvider({ children }) {
 export const useUser = () => {
   return useContext(userContext);
 };
+
+export const createApolloClient = () => {
+  const linkUri =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:4000/graphql"
+      : process.env.BACKEND_URL + "/graphql";
+  const httpLink = new HttpLink({
+    uri: linkUri,
+  });
+
+  return new ApolloClient({
+    link: httpLink,
+    cache,
+  });
+};
