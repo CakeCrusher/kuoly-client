@@ -237,9 +237,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async (ids) => {
-  console.log("ids", ids);
-  // const { _ids } = params;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log("params", params);
+  const { ids } = params;
   const client = createApolloClient();
   let catalogue: CatalogueType | null = null;
   try {

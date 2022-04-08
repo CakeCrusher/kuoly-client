@@ -60,7 +60,15 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
       if (subscription.error.message.includes("Catalogue does not exist")) {
         // console.log("catalogueSubscription", ": Catalogue does not exist");
       } else {
-        apolloHookErrorHandler("catalogueSubscription", subscription.error);
+        if (process.env.NODE_ENV === "development") {
+          apolloHookErrorHandler(
+            "catalogueSubscription",
+            subscription.error,
+            true
+          );
+        } else {
+          apolloHookErrorHandler("catalogueSubscription", subscription.error);
+        }
       }
     }
 
