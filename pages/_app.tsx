@@ -8,6 +8,7 @@ import "./catalogues.less";
 import "./api-info.less";
 import "./ctg.less";
 import "../containers/CatalogueSelectItems/CatalogueSelectItems.less";
+import "../containers/CatalogueHeader/CatalogueHeader.less";
 import "../components/Undo/UndoNotification.less";
 import "../components/Feedback/Feedback.less";
 import "../components/Modal/Modal.less";
@@ -16,6 +17,14 @@ import "../components/fields/TextreaInput/TextareaInput.less";
 import "../components/fields/TextInput/TextInput.less";
 import "../components/CatalogueCard/CatalogueCard.less";
 import "../components/DeleteCatalogueButton/DeleteCatalogueButton.less";
+import "../components/AvatarImage/AvatarImage.less";
+import "../components/CatalogueBanner/CatalogueBanner.less";
+import "../components/fields/CalendarInput/CalendarInput.less";
+import "../components/fields/Color/Color.less";
+import "../components/fields/Dropdown/Dropdown.less";
+import "../components/IconButton/IconButton.less";
+import "../components/ImageCrop/ImageCrop.less";
+// import "../components"
 // import "../components"
 // import "../components"
 // import "../components"

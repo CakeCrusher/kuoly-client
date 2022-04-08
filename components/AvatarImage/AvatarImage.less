@@ -1,0 +1,92 @@
+@import "../../App.less";
+
+@size: 7rem;
+
+.prof-image-wrapper {
+  width: @size;
+  height: @size;
+  border: 0px dashed #pallette[grey];
+  border-radius: @size;
+  overflow: hidden;
+
+  img {
+    &[src=""] {
+      display: none;
+    }
+
+    width: 100%;
+    height: 100%;
+
+    /*TODO: This will almost certainly need to NOT be "fill" */
+    object-fit: cover;
+  }
+}
+
+.avatar-image-container {
+  width: @size;
+  height: @size;
+
+  .toggle-wrapper {
+    width: @size;
+    height: @size;
+    position: relative;
+
+    > * {
+      position: absolute;
+      width: @size;
+      height: @size;
+    }
+
+    .image-wrapper {
+      width: @size;
+      height: @size;
+      z-index: 1;
+      border: 0px dashed #pallette[grey];
+      border-radius: @size;
+      overflow: hidden;
+
+      img {
+        &[src=""] {
+          display: none;
+        }
+
+        width: @size;
+        height: @size;
+
+        /*TODO: This will almost certainly need to NOT be "fill" */
+        object-fit: cover;
+      }
+    }
+  }
+
+  .icons-container {
+    z-index: 2;
+    color: red;
+    display: flex;
+
+    .icon-btn:hover {
+      cursor: pointer;
+    }
+  }
+}
+.file-delete-row {
+  width: 100%;
+  display: flex;
+  column-gap: 0.5rem;
+  margin-bottom: 1rem;
+  .file-input {
+    width: 100%;
+    .file-label {
+      .icon {
+        margin-right: 0.5rem;
+      }
+    }
+    input {
+      display: none;
+    }
+  }
+}
+
+.submit {
+  width: 100%;
+}

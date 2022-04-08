@@ -23,6 +23,7 @@ import {
 import { useIsEditing, useMarkedForDeletion } from "../../state/store";
 import { createApolloClient, useUser } from "../../lib/UserProvider";
 import { GET_ALL_CATALOGUE_IDS, GET_CATALOGUE } from "../../graphql/schemas";
+import { CatalogueHeader } from "../../containers";
 type CatalogueProps = {
   catalogue_prop: CatalogueType;
 };
@@ -167,12 +168,12 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
         }}
       >
         <div className="page-wrapper">
-          {/* <CatalogueHeader
+          <CatalogueHeader
             isEditing={isEditing}
             editable={editable}
             catalogue={catalogue}
             toggleEdit={() => setIsEditing(!isEditing)}
-          /> */}
+          />
 
           {/* <CatalogueItems
             catalogue={catalogue}
