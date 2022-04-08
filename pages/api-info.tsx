@@ -33,7 +33,6 @@ const Api = () => {
         <meta property="og:url" content="https://www.kuoly.com/api-info" />
         <meta property="og:site_name" content="Kuoly" />
         <meta name="theme-color" content="#c9042c" />
-
         <meta name="twitter:title" content="API" />
         <meta
           name="twitter:description"
