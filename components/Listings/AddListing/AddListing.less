@@ -1,0 +1,43 @@
+@import "../../../App.less";
+
+.add-listing-container {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  .inputs-container {
+    position: relative;
+    flex: 0 1 auto;
+    width: 100%;
+
+    input {
+      width: 100%;
+      border: 1px solid #pallette[darkgrey];
+      border-radius: 5px;
+      padding: 0.5rem 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .btn-wrapper {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      color: white;
+      z-index: 1;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.2rem;
+        height: 2.2rem;
+        padding: 0;
+        border-radius: 4px;
+      }
+    }
+  }
+}

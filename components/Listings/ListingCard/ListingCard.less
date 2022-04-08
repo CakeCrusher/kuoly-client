@@ -1,0 +1,100 @@
+@import "../../../App.less";
+
+.drag-handle-icon {
+  // rotate svg by 90 degrees to the right
+  transform: rotate(90deg);
+}
+.drag-overlay {
+  width: 100% !important;
+  height: 100% !important;
+}
+.listing-card {
+  cursor: pointer;
+  user-select: none;
+  padding: 0 1rem;
+  width: calc(25% - (3rem / 4));
+  &:hover {
+    border: 1px solid #pallette[lightdark];
+  }
+  @media @laptop {
+    width: calc(33% - (2rem / 3));
+  }
+  @media @tablet {
+    width: calc(50% - (1rem / 2));
+  }
+  @media @mobile {
+    width: 100%;
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+
+  .card-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 2rem;
+    text-align: center;
+
+    .icon-button {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2rem;
+      height: 2rem;
+      top: -1rem;
+      right: -2rem;
+    }
+  }
+
+  .listing-card-body {
+    height: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .listing-image-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 8rem;
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: auto;
+        height: 100%;
+      }
+    }
+    .listing-title-description {
+      overflow: hidden;
+      white-space: pre-wrap;
+      .listing-title {
+        font-size: 1.5rem;
+        font-weight: normal;
+      }
+
+      .listing-description {
+        font-size: 1rem;
+        column-gap: 1rem;
+        color: #pallette[darkgrey];
+        white-space: pre-wrap;
+      }
+    }
+
+    .listing-labels {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 0.5rem;
+      row-gap: 0.5rem;
+    }
+
+    .listing-price {
+      font-size: 1.5rem;
+    }
+  }
+}

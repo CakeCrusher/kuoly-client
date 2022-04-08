@@ -1,0 +1,55 @@
+@import "../../App.less";
+
+.drag-indicator {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.2rem;
+  opacity: 0.5;
+}
+
+.label {
+  height: 2rem;
+  display: flex;
+  color: #pallette[dark];
+  border: 1px solid #pallette[grey];
+  background-color: #pallette[silver];
+  padding: 0.2rem 1.5rem;
+  border-radius: 100px;
+  user-select: none;
+  position: relative;
+  // allow text to continue without wrapping
+  white-space: nowrap;
+  overflow: hidden;
+  &.clickable {
+    background-color: #pallette[lightdark];
+    color: white;
+    border-color: #pallette[lightdark];
+    cursor: pointer;
+    &:hover {
+      background-color: #686868;
+    }
+  }
+
+  .delete-label {
+    display: none;
+  }
+
+  &.show-delete {
+    padding-right: 0.5rem;
+    .delete-label {
+      .delete-btn;
+      display: block;
+    }
+  }
+  &.hide {
+    opacity: 0;
+  }
+  &.faint {
+    color: #pallette[dark];
+    background-color: #pallette[silver];
+    border-color: #pallette[grey];
+    &:hover {
+      background-color: #d2d2d2;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import "../../App.less";
+
+.catalogue-items-container {
+  padding-top: 1rem;
+  @media @mobile {
+    padding: 1rem;
+  }
+
+  .add-listing-sort {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+    min-height: 2rem;
+    @media @mobile {
+      .add-listing-sort {
+        flex-direction: column;
+      }
+    }
+
+    .add-listing-wrapper {
+      position: relative;
+      width: 50%;
+      @media @mobile {
+        width: 100%;
+      }
+      left: 0;
+    }
+
+    .sort-wrapper {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .listing-cards-container-wrapper {
+    margin-top: 1rem;
+  }
+}
+
+@media screen {
+  // sm
+  @media (min-width: 576px) {
+  }
+
+  // md
+  @media (min-width: 768px) {
+  }
+
+  // lg
+  @media (min-width: 992px) {
+  }
+
+  // xl
+  @media (min-width: 1200px) {
+  }
+
+  // xxl
+  @media (min-width: 1400px) {
+  }
+}

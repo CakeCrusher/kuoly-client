@@ -23,7 +23,7 @@ import {
 import { useIsEditing, useMarkedForDeletion } from "../../state/store";
 import { createApolloClient, useUser } from "../../lib/UserProvider";
 import { GET_ALL_CATALOGUE_IDS, GET_CATALOGUE } from "../../graphql/schemas";
-import { CatalogueHeader } from "../../containers";
+import { CatalogueHeader, CatalogueItems } from "../../containers";
 type CatalogueProps = {
   catalogue_prop: CatalogueType;
 };
@@ -81,7 +81,7 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
   }, []);
 
   if (!router.query.ids) {
-    return <div className="message">non client</div>;
+    return <div className="message">Loading..</div>;
   }
 
   let catalogue: CatalogueType | null = null;
@@ -177,13 +177,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
             toggleEdit={() => setIsEditing(!isEditing)}
           />
 
-          {/* <CatalogueItems
+          <CatalogueItems
             catalogue={catalogue}
             isEditing={isEditing}
             labels={sortedLabels}
             listings={sortedListings}
             handleSelectListing={handleSelectListing}
-          /> */}
+          />
           {/* <ListingModal
             catalogueId={catalogue.id}
             labels={sortedLabels}
