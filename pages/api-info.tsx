@@ -34,10 +34,6 @@ const Api = () => {
         <meta property="og:site_name" content="Kuoly" />
         <meta name="theme-color" content="#c9042c" />
 
-        <meta
-          name="twitter:card"
-          content="https://storage.googleapis.com/givespace-pictures/Kuoly.png"
-        />
         <meta name="twitter:title" content="API" />
         <meta
           name="twitter:description"
