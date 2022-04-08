@@ -24,7 +24,6 @@ import "../components/fields/CalendarInput/CalendarInput.less";
 import "../components/fields/Color/Color.less";
 import "../components/fields/Dropdown/Dropdown.less";
 import "../components/IconButton/IconButton.less";
-import "../components/ImageCrop/ImageCrop.less";
 import "../components/Labels/Label.less";
 import "../components/Labels/LabelContainer.less";
 import "../components/Listings/AddListing/AddListing.less";
@@ -35,24 +34,8 @@ import "../containers/CatalogueItems/CatalogueItems.less";
 import "../components/fields/Checkbox/Checkbox.less";
 import "../components/Links/LinksContainer.less";
 import "../components/fields/FileInput/FileInput.less";
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
-// import "../components"
 
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-} from "@apollo/client";
 import { UserProvider } from "../lib/UserProvider";
-import { useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 
 // TODO: Create a use effect that gets the user from the cookie

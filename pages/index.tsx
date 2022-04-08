@@ -10,12 +10,6 @@ import { useUser } from "../lib/UserProvider";
 
 const Home = () => {
   // TODO: get the client data instead of making a query
-  // const { client, userId } = useUser();
-  // const client = useApolloClient();
-  // const cachedData = client.readQuery({
-  //   query: MY_CATALOGUES,
-  // });
-  // console.log("client.cache", client.cache);
   const myCatalogues = useQuery(MY_CATALOGUES);
 
   const ButtonsToShow = () => {

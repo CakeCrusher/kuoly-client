@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import {
-  cleanedPath,
   getCatalogueFromCache,
   removeFromCacheIfMFD,
 } from "../../utils/functions";
@@ -24,25 +23,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   // get navigation params
   const router = useRouter();
   const { userId } = useUser();
-  // const navigate = useNavigate();
-  // const navigationType = useNavigationType();
-  // const location = useLocation();
-  // const useQueryStrings = () => {
-  //   return useMemo(
-  //     () => new URLSearchParams(location.search),
-  //     [location.search]
-  //   );
-  // };
-  // const queryStrings = useQueryStrings();
   const isEditId = Boolean(router.query.edit);
   const { markedForDeletion } = useMarkedForDeletion();
-
-  // let initialSelectedListingId: string | null =
-  //   (params && params[1]) || (router.query.ids && router.query.ids[1]) || null;
-  // let splitPath = cleanedPath(location.pathname).split("/");
-  // if (splitPath.length > 3) {
-  //   initialSelectedListingId = splitPath[3];
-  // }
   const [selectedListingId, setSelectedListingId] = useState<string | null>(
     null
   );
@@ -50,7 +32,6 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   const current_user_id = userId;
   const corresponding_id: string =
     (params && params[0]) || (router.query.ids && router.query.ids[0]) || "";
-  // if (!corresponding_id) throw new Error("no id on params");
   const idVariable = { [isEditId ? "edit_id" : "id"]: corresponding_id };
 
   // All ApolloHooks are moved to custom hook for organization
@@ -83,7 +64,7 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
 
   let catalogue: CatalogueType | null = null;
   if (catalogueQuery.error) {
-    return <div className="message">Catalogue not found</div>;
+    return <div className="message">List not found</div>;
   }
 
   if (catalogueQuery.data && catalogueQuery.data.catalogues[0]) {
@@ -195,43 +176,44 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       </div>
     </div>
   );
+  // return null;
 };
 
 export default Catalogue;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const client = createApolloClient();
-  // const query = await client.query({
-  //   query: GET_ALL_CATALOGUE_IDS,
-  //   variables: {
-  //     id: "",
-  //   },
-  // });
-  // const catalogues: CatalogueType[] = query.data.catalogues;
-  // let paths = [];
-  // catalogues.forEach((catalogue) => {
-  //   paths.push({
-  //     params: {
-  //       ids: [catalogue.id],
-  //     },
-  //   });
-  //   paths.push({
-  //     params: {
-  //       ids: [catalogue.edit_id],
-  //     },
-  //   });
-  //   if (catalogue.listings) {
-  //     catalogue.listings.forEach((listing) => {
-  //       paths.push({
-  //         params: {
-  //           ids: [catalogue.id, listing.id],
-  //         },
-  //       });
-  //     });
-  //   }
-  // });
+  const client = createApolloClient();
+  const query = await client.query({
+    query: GET_ALL_CATALOGUE_IDS,
+    variables: {
+      id: "",
+    },
+  });
+  const catalogues: CatalogueType[] = query.data.catalogues;
+  let paths = [];
+  catalogues.forEach((catalogue) => {
+    paths.push({
+      params: {
+        ids: [catalogue.id],
+      },
+    });
+    paths.push({
+      params: {
+        ids: [catalogue.edit_id],
+      },
+    });
+    if (catalogue.listings) {
+      catalogue.listings.forEach((listing) => {
+        paths.push({
+          params: {
+            ids: [catalogue.id, listing.id],
+          },
+        });
+      });
+    }
+  });
   return {
-    paths: [],
+    paths,
     fallback: true,
   };
 };
@@ -247,15 +229,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         id: ids[0],
       },
     });
-    catalogue = query.data.catalogues[0];
-  } catch (error) {
-    const query = await client.query({
-      query: GET_CATALOGUE,
-      variables: {
-        edit_id: ids[0],
-      },
-    });
-    catalogue = query.data.catalogues[0];
+    if (query.data) {
+      catalogue = query.data.catalogues[0];
+    }
+  } catch {
+    try {
+      const query = await client.query({
+        query: GET_CATALOGUE,
+        variables: {
+          edit_id: ids[0],
+        },
+      });
+      if (query.data) {
+        catalogue = query.data.catalogues[0];
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   // const catalogue = await getCatalogue(id);

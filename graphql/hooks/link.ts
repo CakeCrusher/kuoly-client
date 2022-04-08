@@ -36,9 +36,8 @@ const LinkApolloHooks: LinkHook.FC = () => {
   const removeLink = (id: string) => {
     handleDeletion(id, "Link", () =>
       removeLinkMutation({
-        variables: {
-          id,
-        },
+        variables: { id },
+        fetchPolicy: "no-cache",
       })
     );
   };

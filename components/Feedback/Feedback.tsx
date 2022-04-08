@@ -78,14 +78,6 @@ const Feedback: React.FC = () => {
                     className="textarea"
                   />
                 </div>
-                {/* <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  id="feedback"
-                  rows={3}
-                  placeholder="Send feedback..."
-                  className="textarea"
-                /> */}
                 <div className="input-container-row">
                   <input
                     id="feeback-checkbox"

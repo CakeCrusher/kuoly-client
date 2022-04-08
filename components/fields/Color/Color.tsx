@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { IconButton } from "../..";
-// import { Palette } from "../../../assets";
 import { MdOutlineColorLens } from "react-icons/md";
 
 type Props = {

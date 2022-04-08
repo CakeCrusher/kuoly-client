@@ -1,32 +1,16 @@
 import {
   ApolloClient,
   ApolloProvider,
-  gql,
   HttpLink,
   InMemoryCache,
-  useQuery,
   split,
 } from "@apollo/client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { createUploadLink } from "apollo-upload-client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { cache } from "../graphql/clientConfig";
-import * as ws from "ws";
-
-// export const createApolloClient = () => {
-//   const link = new HttpLink({
-//     uri: "http://localhost:4000/graphql",
-//     headers: {
-//       authorization: UserId(),
-//     },
-//   });
-//   return new ApolloClient({
-//     link,
-//     cache: new InMemoryCache(),
-//   });
-// };
 
 type UserContext = {
   createApolloClient: () => ApolloClient<any>;

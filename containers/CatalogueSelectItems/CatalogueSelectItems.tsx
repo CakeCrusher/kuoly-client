@@ -22,7 +22,6 @@ const CatalogueCards: React.FC<Props> = ({ catalogues }) => {
     useMutation(CREATE_CATALOGUE);
   apolloHookErrorHandler("CreateCatalogueButton.tsx", error);
 
-  // const navigate = useNavigate();
   useEffect(() => {
     if (!loading && data) {
       cache.updateQuery({ query: MY_CATALOGUES }, (prev) => {

@@ -1,8 +1,6 @@
 import React from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { IconButton } from "../..";
-// import { IconButton } from "../..";
-// import { ChevronDown, ChevronUp } from "../../../assets";
 
 import { DropDownContext } from "./Dropdown";
 

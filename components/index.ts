@@ -3,7 +3,6 @@
 /* Such as anything that needs a state to maintain the UI/UX     */
 /* Most commonly, elements that need user input                  */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export { default as ImageCrop } from "./ImageCrop/ImageCrop";
 export { default as AvatarImage } from "./AvatarImage/AvatarImage";
 export { default as CatalogueBanner } from "./CatalogueBanner/CatalogueBanner";
 export { default as ToggleEdit } from "./ToggleEdit/ToggleEdit";

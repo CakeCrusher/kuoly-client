@@ -1,14 +1,6 @@
-import React, {
-  ChangeEvent,
-  createRef,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 
-import { IconButton, ImageCrop, Modal } from "..";
-import { acceptedImageFiles } from "../../utils/references";
-// import { Camera } from "../../assets";
+import { IconButton, Modal } from "..";
 
 import { FiCamera, FiTrash2, FiUpload } from "react-icons/fi";
 
@@ -33,14 +25,13 @@ const AvatarImage: React.FC<Props> = ({
   const [image, setImage] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const handleModal = () =>
-    setShowModal((prev) => {
-      (fileRef as any).current.value = "";
-      return !prev;
-    });
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if (!evt.target.files[0]) {
+      setImage(null);
       return;
     }
 

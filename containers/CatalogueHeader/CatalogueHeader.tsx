@@ -8,7 +8,6 @@ import {
 } from "react-icons/fi";
 import {
   TextInput,
-  // check Chevrons
   Dropdown,
   CatalogueBanner,
   AvatarImage,

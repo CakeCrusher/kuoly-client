@@ -1,15 +1,6 @@
-import React, {
-  useState,
-  useRef,
-  ChangeEvent,
-  createRef,
-  useEffect,
-} from "react";
+import React, { useState, useRef, ChangeEvent, useEffect } from "react";
 
-import { ImageCrop, Modal, ColorInput, IconButton } from "..";
-import { acceptedImageFiles } from "../../utils/references";
-
-// import { Camera } from "../../assets";
+import { Modal, ColorInput, IconButton } from "..";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import { updateCatalogueCache } from "../../utils/functions";
@@ -39,14 +30,13 @@ const CatalogueBanner: React.FC<Props> = ({
   const fileRef = useRef<HTMLInputElement>(null);
   const { editCatalogue } = useCatalogueApolloHooks({ id: catalogue.id });
 
-  const handleModal = () =>
-    setShowModal((prev) => {
-      (fileRef as any).current.value = "";
-      return !prev;
-    });
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if (!evt.target.files[0]) {
+      setImage(null);
       return;
     }
 
