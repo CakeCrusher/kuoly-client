@@ -63,6 +63,11 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       variables: { ...idVariable },
     });
   }, []);
+  useEffect(() => {
+    if (router.query && router.query.ids && router.query.ids.length === 2) {
+      setSelectedListingId(router.query.ids[1]);
+    }
+  }, [router]);
 
   if (!router.query.ids) {
     return (
