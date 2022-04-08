@@ -1,8 +1,51 @@
+import Head from "next/head";
 import React from "react";
 
 const Api = () => {
   return (
     <div className="api-page-container">
+      <Head>
+        <title>API</title>
+        <link
+          rel="icon"
+          type="text/png"
+          href="https://storage.googleapis.com/givespace-pictures/Logo.svg"
+        />
+        <meta
+          name="description"
+          content="'A machines' ultimate tool for creating sharable product lists and catalogues. Start making requests, no sign-up required."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:title" content="API" />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          property="og:description"
+          content="'A machines' ultimate tool for creating sharable product lists and catalogues. Start making requests, no sign-up required."
+        />
+        <meta
+          property="og:image"
+          content="https://storage.googleapis.com/givespace-pictures/Kuoly.png"
+        />
+        <meta property="og:image:alt" content="Kuoly" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:url" content="https://www.kuoly.com/api-info" />
+        <meta property="og:site_name" content="Kuoly" />
+        <meta name="theme-color" content="#c9042c" />
+
+        <meta
+          name="twitter:card"
+          content="https://storage.googleapis.com/givespace-pictures/Kuoly.png"
+        />
+        <meta name="twitter:title" content="API" />
+        <meta
+          name="twitter:description"
+          content="'A machines' ultimate tool for creating sharable product lists and catalogues. Start making requests, no sign-up required."
+        />
+        <meta
+          name="twitter:image"
+          content="https://storage.googleapis.com/givespace-pictures/Kuoly.png"
+        />
+      </Head>
       <h3 className="api-title">Our API interface</h3>
       <iframe
         className="video"

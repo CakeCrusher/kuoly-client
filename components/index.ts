@@ -20,7 +20,7 @@ export { default as ListingCard } from "./Listings/ListingCard/ListingCard";
 export { default as ListingCardsContainer } from "./Listings/ListingCardsContainer/ListingCardsContainer";
 export { default as AddListing } from "./Listings/AddListing/AddListing";
 export { default as UndoNotification } from "./Undo/UndoNotification";
-
+export { default as CatalogueHead } from "./heads/CatalogueHead";
 export { default as Checkbox } from "./fields/Checkbox/Checkbox";
 export { default as TextareaInput } from "./fields/TextreaInput/TextareaInput";
 export { default as ListingLabelContainer } from "./Labels/ListingLabelContainer";

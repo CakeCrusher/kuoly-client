@@ -15,9 +15,14 @@ import {
   CatalogueItems,
   ListingModal,
 } from "../../containers";
+import { CatalogueHead } from "../../components";
+
 type CatalogueProps = {
   catalogue_prop: CatalogueType;
-  params: string[];
+  params: {
+    ids: string[];
+    edit?: string;
+  };
 };
 const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   // get navigation params
@@ -25,13 +30,18 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   const { userId } = useUser();
   const isEditId = Boolean(router.query.edit);
   const { markedForDeletion } = useMarkedForDeletion();
+
+  const initialListing =
+    params && params.ids && params.ids.length === 2 ? params.ids[1] : null;
   const [selectedListingId, setSelectedListingId] = useState<string | null>(
-    null
+    initialListing
   );
 
   const current_user_id = userId;
   const corresponding_id: string =
-    (params && params[0]) || (router.query.ids && router.query.ids[0]) || "";
+    (params && params.ids && params.ids[0]) ||
+    (router.query.ids && router.query.ids[0]) ||
+    "";
   const idVariable = { [isEditId ? "edit_id" : "id"]: corresponding_id };
 
   // All ApolloHooks are moved to custom hook for organization
@@ -53,18 +63,30 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       variables: { ...idVariable },
     });
   }, []);
-  useEffect(() => {
-    if (router.query.ids && router.query.ids.length > 1)
-      setSelectedListingId(router.query.ids[1]);
-  }, [router]);
 
   if (!router.query.ids) {
-    return <div className="message">Loading...</div>;
+    return (
+      <div className="message">
+        <CatalogueHead
+          catalogue={catalogue_prop}
+          ids_param={params && params.ids}
+        />
+        Loading...
+      </div>
+    );
   }
 
   let catalogue: CatalogueType | null = null;
   if (catalogueQuery.error) {
-    return <div className="message">List not found</div>;
+    return (
+      <div className="message">
+        <CatalogueHead
+          catalogue={catalogue_prop}
+          ids_param={params && params.ids}
+        />
+        List not found
+      </div>
+    );
   }
 
   if (catalogueQuery.data && catalogueQuery.data.catalogues[0]) {
@@ -78,7 +100,15 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   }
 
   if (!catalogue) {
-    return <div className="message">Loading...</div>;
+    return (
+      <div className="message">
+        <CatalogueHead
+          catalogue={catalogue_prop}
+          ids_param={params && params.ids}
+        />
+        Loading...
+      </div>
+    );
   }
 
   // status conditions
@@ -123,7 +153,6 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
     // } else {
     //   navigate(`/ctg/${corresponding_id}${location.search}`);
     // }
-    console.log("Back");
     router.replace(
       `/ctg/${corresponding_id}${router.query.edit ? "?edit=true" : ""}`,
       "",
@@ -143,6 +172,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
 
   return (
     <div className="catalogue-container">
+      <CatalogueHead
+        catalogue={catalogue || catalogue_prop}
+        ids_param={
+          (router.query && (router.query.ids as string[])) ||
+          (params && params.ids)
+        }
+      />
       <div
         style={{
           flex: "1 0 auto",
@@ -244,7 +280,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         catalogue = query.data.catalogues[0];
       }
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   }
 
