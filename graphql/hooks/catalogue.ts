@@ -83,7 +83,8 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
     } else {
       apolloHookErrorHandler(
         "incrementCatalogueViewsMuation",
-        incrrementCatalogueViewsError
+        incrrementCatalogueViewsError,
+        true
       );
     }
   }

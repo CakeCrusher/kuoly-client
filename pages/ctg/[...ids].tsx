@@ -44,7 +44,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
   const isEditId = Boolean(router.query.edit);
   const { markedForDeletion } = useMarkedForDeletion();
 
-  let initialSelectedListingId: string | null = router.query.ids[1] || null;
+  let initialSelectedListingId: string | null =
+    (router.query.ids && router.query.ids[1]) || null;
   // let splitPath = cleanedPath(location.pathname).split("/");
   // if (splitPath.length > 3) {
   //   initialSelectedListingId = splitPath[3];
@@ -54,7 +55,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
   );
 
   const current_user_id = userId;
-  const corresponding_id: string = router.query.ids[0] || "";
+  const corresponding_id: string =
+    (router.query.ids && router.query.ids[0]) || "";
   // if (!corresponding_id) throw new Error("no id on params");
   const idVariable = { [isEditId ? "edit_id" : "id"]: corresponding_id };
 
@@ -235,8 +237,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { ids } = params;
+export const getStaticProps: GetStaticProps = async (ids) => {
+  console.log("ids", ids);
+  // const { _ids } = params;
   const client = createApolloClient();
   let catalogue: CatalogueType | null = null;
   try {
