@@ -16,12 +16,16 @@ const Modal: React.FC<ModalProps> = ({ className, show, close, children }) => {
       if (show) {
         outterRef.current.classList.remove("hide");
         setTimeout(() => {
-          outterRef.current!.classList.add("show");
+          if (outterRef.current) {
+            outterRef.current.classList.add("show");
+          }
         }, 1);
       } else {
         outterRef.current.classList.remove("show");
         setTimeout(() => {
-          outterRef.current!.classList.add("hide");
+          if (outterRef.current) {
+            outterRef.current!.classList.add("hide");
+          }
         }, 125);
       }
     }
