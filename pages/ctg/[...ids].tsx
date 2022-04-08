@@ -199,38 +199,38 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
 export default Catalogue;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const client = createApolloClient();
-  const query = await client.query({
-    query: GET_ALL_CATALOGUE_IDS,
-    variables: {
-      id: "",
-    },
-  });
-  const catalogues: CatalogueType[] = query.data.catalogues;
-  let paths = [];
-  catalogues.forEach((catalogue) => {
-    paths.push({
-      params: {
-        ids: [catalogue.id],
-      },
-    });
-    paths.push({
-      params: {
-        ids: [catalogue.edit_id],
-      },
-    });
-    if (catalogue.listings) {
-      catalogue.listings.forEach((listing) => {
-        paths.push({
-          params: {
-            ids: [catalogue.id, listing.id],
-          },
-        });
-      });
-    }
-  });
+  // const client = createApolloClient();
+  // const query = await client.query({
+  //   query: GET_ALL_CATALOGUE_IDS,
+  //   variables: {
+  //     id: "",
+  //   },
+  // });
+  // const catalogues: CatalogueType[] = query.data.catalogues;
+  // let paths = [];
+  // catalogues.forEach((catalogue) => {
+  //   paths.push({
+  //     params: {
+  //       ids: [catalogue.id],
+  //     },
+  //   });
+  //   paths.push({
+  //     params: {
+  //       ids: [catalogue.edit_id],
+  //     },
+  //   });
+  //   if (catalogue.listings) {
+  //     catalogue.listings.forEach((listing) => {
+  //       paths.push({
+  //         params: {
+  //           ids: [catalogue.id, listing.id],
+  //         },
+  //       });
+  //     });
+  //   }
+  // });
   return {
-    paths,
+    paths: [],
     fallback: true,
   };
 };
