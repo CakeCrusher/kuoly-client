@@ -50,6 +50,8 @@ const Home = () => {
           property="og:image"
           content="https://storage.googleapis.com/givespace-pictures/Kuoly.png"
         />
+        <meta property="og:image:width" content="1218" />
+        <meta property="og:image:height" content="684" />
         <meta property="og:image:alt" content="Kuoly" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:url" content="https://www.kuoly.com/" />
