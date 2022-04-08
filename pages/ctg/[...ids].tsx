@@ -1,18 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-// import {
-//   useLocation,
-//   useNavigate,
-//   useParams,
-//   useNavigationType,
-// } from "react-router-dom";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
-
-// import {
-//   CatalogueHeader,
-//   CatalogueItems,
-//   ListingModal,
-// } from "../../containers";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import {
@@ -23,11 +11,16 @@ import {
 import { useIsEditing, useMarkedForDeletion } from "../../state/store";
 import { createApolloClient, useUser } from "../../lib/UserProvider";
 import { GET_ALL_CATALOGUE_IDS, GET_CATALOGUE } from "../../graphql/schemas";
-import { CatalogueHeader, CatalogueItems } from "../../containers";
+import {
+  CatalogueHeader,
+  CatalogueItems,
+  ListingModal,
+} from "../../containers";
 type CatalogueProps = {
   catalogue_prop: CatalogueType;
+  params: string[];
 };
-const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
+const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   // get navigation params
   const router = useRouter();
   const { userId } = useUser();
@@ -44,19 +37,19 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
   const isEditId = Boolean(router.query.edit);
   const { markedForDeletion } = useMarkedForDeletion();
 
-  let initialSelectedListingId: string | null =
-    (router.query.ids && router.query.ids[1]) || null;
+  // let initialSelectedListingId: string | null =
+  //   (params && params[1]) || (router.query.ids && router.query.ids[1]) || null;
   // let splitPath = cleanedPath(location.pathname).split("/");
   // if (splitPath.length > 3) {
   //   initialSelectedListingId = splitPath[3];
   // }
   const [selectedListingId, setSelectedListingId] = useState<string | null>(
-    initialSelectedListingId
+    null
   );
 
   const current_user_id = userId;
   const corresponding_id: string =
-    (router.query.ids && router.query.ids[0]) || "";
+    (params && params[0]) || (router.query.ids && router.query.ids[0]) || "";
   // if (!corresponding_id) throw new Error("no id on params");
   const idVariable = { [isEditId ? "edit_id" : "id"]: corresponding_id };
 
@@ -79,9 +72,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
       variables: { ...idVariable },
     });
   }, []);
+  useEffect(() => {
+    if (router.query.ids && router.query.ids.length > 1)
+      setSelectedListingId(router.query.ids[1]);
+  }, [router]);
 
   if (!router.query.ids) {
-    return <div className="message">Loading..</div>;
+    return <div className="message">Loading...</div>;
   }
 
   let catalogue: CatalogueType | null = null;
@@ -102,7 +99,6 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
   if (!catalogue) {
     return <div className="message">Loading...</div>;
   }
-  console.log("catalogue", catalogue);
 
   // status conditions
   let editable = current_user_id === catalogue.user_id;
@@ -146,8 +142,11 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
     // } else {
     //   navigate(`/ctg/${corresponding_id}${location.search}`);
     // }
+    console.log("Back");
     router.replace(
-      `/ctg/${corresponding_id}${router.query.edit ? "?edit=true" : ""}`
+      `/ctg/${corresponding_id}${router.query.edit ? "?edit=true" : ""}`,
+      "",
+      { shallow: true }
     );
     setSelectedListingId(null);
   };
@@ -184,14 +183,14 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop }) => {
             listings={sortedListings}
             handleSelectListing={handleSelectListing}
           />
-          {/* <ListingModal
+          <ListingModal
             catalogueId={catalogue.id}
             labels={sortedLabels}
             listingId={selectedListingId}
             listing={selectedListing}
             handleClose={handleListingModalClose}
             editable={editable}
-          /> */}
+          />
         </div>
       </div>
     </div>
@@ -238,7 +237,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log("params", params);
   const { ids } = params;
   const client = createApolloClient();
   let catalogue: CatalogueType | null = null;
@@ -264,6 +262,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       catalogue_prop: catalogue,
+      params,
     },
   };
 };

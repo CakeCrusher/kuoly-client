@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Camera } from "../../../assets";
+import { FiCamera } from "react-icons/fi";
 import IconButton from "../../IconButton/IconButton";
-
-import "./FileInput.less";
 
 type Props = {
   isEditing: boolean;
@@ -39,7 +37,9 @@ const FileInput: React.FC<Props> = ({
             className={value ? "with-image" : "no-image"}
             htmlFor={keyProp}
           >
-            <IconButton src={Camera} />
+            <IconButton>
+              <FiCamera color="white" size="2rem" />
+            </IconButton>
           </label>
           <input
             className={`toggle-input standard-text-input ${className || ""}`}

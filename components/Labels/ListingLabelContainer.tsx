@@ -2,8 +2,6 @@ import React from "react";
 import useListingLabelApolloHooks from "../../graphql/hooks/listingLabel";
 import Label from "./Label";
 
-import "./LabelContainer.less";
-
 type Props = {
   labels: Label[] | null;
   listing: Listing;

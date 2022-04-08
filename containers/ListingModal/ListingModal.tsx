@@ -16,8 +16,6 @@ import useListingApolloHooks from "../../graphql/hooks/listing";
 import { useIsEditing } from "../../state/store";
 import { handleCopy } from "../../utils/functions";
 
-import "./ListingModal.less";
-
 type Props = {
   catalogueId: string;
   listingId: string | null;
@@ -95,13 +93,10 @@ const ListingModal: React.FC<Props> = ({
             )}
 
             <CopyToolTip text="Copy listing link">
-            <button
-              className="btn f-row option"
-              onClick={handleShareClick}
-            >
-              <FiShare2 />
-              <div className="fs-1 m-lef-sm">Share</div>
-            </button>
+              <button className="btn f-row option" onClick={handleShareClick}>
+                <FiShare2 />
+                <div className="fs-1 m-lef-sm">Share</div>
+              </button>
             </CopyToolTip>
           </div>
           <div className="listing-body-container">

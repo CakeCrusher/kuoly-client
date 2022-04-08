@@ -1,0 +1,69 @@
+@import "../../App.less";
+
+.listing-links-container-modified {
+  .listing-links-container;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem;
+  @media @mobile {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.add-link-container {
+  justify-content: center !important;
+}
+
+.edit-link-btn {
+  height: 1.5rem;
+  width: 1.5rem !important;
+  border-radius: 3px !important;
+  padding: 0.2rem !important;
+}
+
+.link-add-icon {
+  color: #pallette[sec];
+}
+.add-link-container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+  font-size: 1rem;
+}
+
+// Modal
+.edit-link-body {
+  width: 20rem;
+}
+.title-img-container {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  column-gap: 0.5rem;
+  align-items: center;
+  justify-content: stretch;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  .title-input {
+    width: 100%;
+    min-height: 0;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .link-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+.link-url {
+  min-height: 0;
+  height: 2rem;
+  font-size: 1rem;
+}

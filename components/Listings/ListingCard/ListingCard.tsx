@@ -8,6 +8,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { FiX } from "react-icons/fi";
 import { MdOutlineDragIndicator } from "react-icons/md";
 import { useListingsFilter } from "../../../state/store";
+import Link from "next/link";
 
 type Props = {
   isEditing: boolean;
@@ -44,17 +45,16 @@ const ListingCard: React.FC<Props> = ({
     });
 
   const handleSelect = () => {
-    console.log("router", router.query);
     let urlToNavigate: string = `/ctg/${router.query.ids[0]}`;
-    console.log("urlToNavigate", urlToNavigate);
     // listing
     urlToNavigate += `/${listing.id}`;
     // add location.search if it exists
     if (router.query.edit) {
       urlToNavigate += `?edit=${router.query.edit}`;
     }
-    router.push(urlToNavigate);
+    router.replace(urlToNavigate, "", { shallow: true });
     selectListing(listing.id);
+    return urlToNavigate;
   };
 
   const style = {

@@ -13,7 +13,7 @@ export { default as CreateCatalogueButton } from "./CreateCatalogueButton/Create
 export { default as LabelContainer } from "./Labels/LabelContainer";
 export { default as Label } from "./Labels/Label";
 export { default as TextInput } from "./fields/TextInput/TextInput";
-// export { default as FileInput } from "./fields/FileInput/FileInput";
+export { default as FileInput } from "./fields/FileInput/FileInput";
 export { default as ColorInput } from "./fields/Color/Color";
 export { default as Dropdown } from "./fields/Dropdown/Dropdown";
 export { default as CalendarInput } from "./fields/CalendarInput/CalendarInput";
@@ -22,10 +22,10 @@ export { default as ListingCardsContainer } from "./Listings/ListingCardsContain
 export { default as AddListing } from "./Listings/AddListing/AddListing";
 export { default as UndoNotification } from "./Undo/UndoNotification";
 
-// export { default as Checkbox } from "./fields/Checkbox/Checkbox";
+export { default as Checkbox } from "./fields/Checkbox/Checkbox";
 export { default as TextareaInput } from "./fields/TextreaInput/TextareaInput";
-// export { default as ListingLabelContainer } from "./Labels/ListingLabelContainer";
-// export { default as LinksContainer } from "./Links/LinksContainer";
+export { default as ListingLabelContainer } from "./Labels/ListingLabelContainer";
+export { default as LinksContainer } from "./Links/LinksContainer";
 export { default as Feedback } from "./Feedback/Feedback";
 export { default as CatalogueCard } from "./CatalogueCard/CatalogueCard";
 

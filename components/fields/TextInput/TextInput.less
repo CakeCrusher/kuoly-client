@@ -7,11 +7,12 @@
   padding: 0.2rem;
   &:focus {
     border-color: #pallette[pos];
+    &.invalid_input {
+      border-color: #pallette[neg];
+    }
   }
 }
-.invalid_input {
-  border-color: #pallette[neg];
-}
+
 .standard-text-display {
   padding: 0px 5px;
   line-height: 100%;
