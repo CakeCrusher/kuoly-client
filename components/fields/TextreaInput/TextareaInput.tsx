@@ -44,7 +44,6 @@ const TextareaInput = ({
     }
   };
   const handleFocus = () => {
-    console.log("handle focus");
     setFieldEditing(fieldEditingProp);
   };
   useEffect(() => {

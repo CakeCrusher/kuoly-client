@@ -27,7 +27,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
       <div
         className="card-header"
         style={{
-          backgroundColor: !catalogue.profile_picture_url
+          backgroundColor: !catalogue.header_image_url
             ? catalogue.header_color
             : "",
         }}
