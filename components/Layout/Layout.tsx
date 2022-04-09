@@ -91,7 +91,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <a className="footer-link">Kuoly API</a>
           </Link>
           <a
-            href="https://github.com/CakeCrusher/kuoly"
+            href="https://github.com/CakeCrusher/kuoly-client"
             target="_blank"
             className="footer-link"
           >
