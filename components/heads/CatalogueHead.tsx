@@ -158,7 +158,7 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     ? new Date(catalogue.event_date).toLocaleDateString().split(",")[0]
     : "";
   const listings = catalogue.listings ? catalogue.listings.length : 0;
-  const author = catalogue.author ? `by ${catalogue.author.name}` : "";
+  const author = catalogue.author ? `by ${catalogue.author}` : "";
   const description =
     catalogue.description ||
     `List ${author} with ${listings} listings. ${date ? `Date: ${date}` : ""}`;
