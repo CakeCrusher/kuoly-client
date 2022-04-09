@@ -158,11 +158,10 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     ? new Date(catalogue.event_date).toLocaleDateString().split(",")[0]
     : "";
   const listings = catalogue.listings ? catalogue.listings.length : 0;
+  const author = catalogue.author ? `by ${catalogue.author.name}` : "";
   const description =
     catalogue.description ||
-    `List by "${catalogue.author}" with ${listings} listings. ${
-      date && `Date: ${date}`
-    }`;
+    `List ${author} with ${listings} listings. ${date ? `Date: ${date}` : ""}`;
   const firstListingImage =
     listings &&
     catalogue.listings.find((listing) => listing.image_url) &&
