@@ -152,7 +152,6 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     }
   }
   // if it is a catalogue link
-  // if it is an edit link
   const title = textClipper(catalogue.title, 57) || "Untitled list";
   const date = catalogue.event_date
     ? new Date(catalogue.event_date).toLocaleDateString().split(",")[0]
@@ -171,6 +170,7 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     catalogue.profile_picture_url ||
     firstListingImage ||
     "https://storage.googleapis.com/givespace-pictures/Logo%20Placeholder%202.png";
+  // if it is an edit link
   if (ids_param[0] === catalogue.edit_id) {
     return (
       <Head>

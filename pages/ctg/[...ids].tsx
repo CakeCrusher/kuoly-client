@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import {
+  fetchFullCatalogue,
   getCatalogueFromCache,
   removeFromCacheIfMFD,
 } from "../../utils/functions";
@@ -263,33 +264,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { ids } = params;
   const client = createApolloClient();
   let catalogue: CatalogueType | null = null;
-  try {
-    const query = await client.query({
-      query: GET_CATALOGUE,
-      variables: {
-        id: ids[0],
-      },
-    });
-    if (query.data) {
-      catalogue = query.data.catalogues[0];
-    }
-  } catch {
-    try {
-      const query = await client.query({
-        query: GET_CATALOGUE,
-        variables: {
-          edit_id: ids[0],
-        },
-      });
-      if (query.data) {
-        catalogue = query.data.catalogues[0];
-      }
-    } catch (error) {
-      // console.log("error", error);
-    }
-  }
-
-  // const catalogue = await getCatalogue(id);
+  catalogue = await fetchFullCatalogue(ids[0]);
   return {
     props: {
       catalogue_prop: catalogue,

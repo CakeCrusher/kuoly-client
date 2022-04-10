@@ -373,3 +373,123 @@ export const textClipper = (
 export const rootUrl = (url: string): string => {
   return url.split("/").slice(0, 3).join("/");
 };
+
+import axios, { AxiosRequestConfig } from "axios";
+export const fetchFullCatalogue = async (
+  id: string
+): Promise<CatalogueType> => {
+  let catalogue: CatalogueType;
+  const fetchToUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:4000/graphql"
+      : process.env.BACKEND_URL + "/graphql";
+  // create a axios fetch request to the http://localhost:4000/graphql
+  const query = `fragment AllLabelFields on Label {
+    id
+    catalogue_id
+    name
+    link_url
+    ordering
+    is_private
+    created
+    updated
+  }
+  fragment AllListingLabelFields on ListingLabel {
+    id
+    listing_id
+    label {
+      ...AllLabelFields
+    }
+  }
+  fragment AllLinkFields on Link {
+    id
+    listing_id
+    url
+    title
+    created
+    updated
+  }
+  fragment AllListingFields on Listing {
+    id
+    catalogue_id
+    name
+    link_url
+    image_url
+    description
+    ordering
+    show_price
+    price
+    created
+    updated
+    labels {
+      ...AllListingLabelFields
+    }
+    links {
+      ...AllLinkFields
+    }
+  }
+  fragment AllCatalogueFields on Catalogue {
+    id
+    edit_id
+    user_id
+    status
+    title
+    description
+    views
+    header_image_url
+    header_color
+    author
+    profile_picture_url
+    event_date
+    location
+    created
+    updated
+    labels {
+      ...AllLabelFields
+    }
+    listings {
+      ...AllListingFields
+    }
+  }
+  query Catalogues($id: ID, $edit_id: String) {
+    catalogues(id: $id, edit_id: $edit_id) {
+      ...AllCatalogueFields
+    }
+  }`;
+  let data = JSON.stringify({
+    query,
+    variables: { id: id },
+  });
+  let editData = JSON.stringify({
+    query,
+    variables: { edit_id: id },
+  });
+  let config: AxiosRequestConfig = {
+    method: "post",
+    url: fetchToUrl,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+  const response = await axios(config);
+  if (!response.data.errors) {
+    catalogue = response.data.data.catalogues[0];
+  } else {
+    let config: AxiosRequestConfig = {
+      method: "post",
+      url: fetchToUrl,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: editData,
+    };
+    const response = await axios(config);
+    if (response.data.errors) {
+      return null;
+    }
+    catalogue = response.data.data.catalogues[0];
+  }
+  console.log("response", catalogue);
+  return catalogue;
+};
