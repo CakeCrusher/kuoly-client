@@ -474,19 +474,7 @@ export const fetchFullCatalogue = async (
   };
   const response = await axios(config);
   if (!response.data.errors) {
-    let config: AxiosRequestConfig = {
-      method: "post",
-      url: fetchToUrl,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-    const response = await axios(config);
-    console.log("edit_response", response.data);
-    if (response.data.errors) {
-      return null;
-    }
+    console.log("response", response.data);
     catalogue = response.data.data.catalogues[0];
   } else {
     let config: AxiosRequestConfig = {
