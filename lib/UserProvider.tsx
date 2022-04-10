@@ -12,6 +12,9 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { cache } from "../graphql/clientConfig";
 
+// const LOCAL_HOST = process.env.BACKEND_URL;
+const LOCAL_HOST = "http://localhost:4000";
+
 type UserContext = {
   createApolloClient: () => ApolloClient<any>;
   registerUser: () => string;
@@ -25,7 +28,7 @@ export const useProvideUser = (): UserContext => {
   const createApolloClient = () => {
     const linkUri =
       process.env.NODE_ENV === "development"
-        ? "http://localhost:4000/graphql"
+        ? LOCAL_HOST + "/graphql"
         : process.env.BACKEND_URL + "/graphql";
     const httpLink = createUploadLink({
       uri: linkUri,
@@ -33,7 +36,7 @@ export const useProvideUser = (): UserContext => {
     });
     const wsUri =
       process.env.NODE_ENV === "development"
-        ? "ws://localhost:4000/graphql"
+        ? "ws" + LOCAL_HOST.slice(4) + "/graphql"
         : process.env.BACKEND_URL.replace(/^https/, "wss") + "/graphql";
     const wsLink = process.browser
       ? new WebSocketLink({
@@ -106,7 +109,7 @@ export const useUser = () => {
 export const createApolloClient = () => {
   const linkUri =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:4000/graphql"
+      ? LOCAL_HOST + "/graphql"
       : process.env.BACKEND_URL + "/graphql";
   const httpLink = new HttpLink({
     uri: linkUri,
