@@ -13,6 +13,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { cache } from "../graphql/clientConfig";
 
 // const LOCAL_HOST = process.env.BACKEND_URL;
+
 const LOCAL_HOST = "http://localhost:4000";
 
 type UserContext = {
