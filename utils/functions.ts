@@ -473,9 +473,9 @@ export const fetchFullCatalogue = async (
   const idResponse = await axios(config(false));
   const editResponse = await axios(config(true));
   if (idResponse.data.errors && editResponse.data.errors) return null;
-  catalogue = idResponse.data.errors
-    ? editResponse.data.data.catalogues[0]
-    : idResponse.data.data.catalogues[0];
+  catalogue = editResponse.data.errors
+    ? idResponse.data.data.catalogues[0]
+    : editResponse.data.data.catalogues[0];
   console.log("catalogue", catalogue);
   return catalogue;
 };
