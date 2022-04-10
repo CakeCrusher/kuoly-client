@@ -377,7 +377,7 @@ export const rootUrl = (url: string): string => {
 import axios, { AxiosRequestConfig } from "axios";
 export const fetchFullCatalogue = async (
   id: string
-): Promise<CatalogueType> => {
+): Promise<CatalogueType | null> => {
   let catalogue: CatalogueType;
   const fetchToUrl =
     process.env.NODE_ENV === "development"
@@ -456,42 +456,26 @@ export const fetchFullCatalogue = async (
       ...AllCatalogueFields
     }
   }`;
-  let data = JSON.stringify({
-    query,
-    variables: { id: id },
-  });
-  let editData = JSON.stringify({
-    query,
-    variables: { edit_id: id },
-  });
-  let config: AxiosRequestConfig = {
-    method: "post",
-    url: fetchToUrl,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
-  const response = await axios(config);
-  if (!response.data.errors) {
-    console.log("response", response.data);
-    catalogue = response.data.data.catalogues[0];
-  } else {
-    let config: AxiosRequestConfig = {
+
+  const config = (edit: boolean): AxiosRequestConfig => {
+    return {
       method: "post",
       url: fetchToUrl,
       headers: {
         "Content-Type": "application/json",
       },
-      data: editData,
+      data: JSON.stringify({
+        query,
+        variables: { [edit ? "edit_id" : "id"]: id },
+      }),
     };
-    const response = await axios(config);
-    console.log("edit_response", response.data);
-    if (response.data.errors) {
-      return null;
-    }
-    catalogue = response.data.data.catalogues[0];
-  }
+  };
+  const idResponse = await axios(config(false));
+  const editResponse = await axios(config(true));
+  if (idResponse.data.errors && editResponse.data.errors) return null;
+  catalogue = idResponse.data.errors
+    ? editResponse.data.data.catalogues[0]
+    : idResponse.data.data.catalogues[0];
   console.log("catalogue", catalogue);
   return catalogue;
 };
