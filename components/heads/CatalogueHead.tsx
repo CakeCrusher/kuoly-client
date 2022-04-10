@@ -158,9 +158,16 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     : "";
   const listings = catalogue.listings ? catalogue.listings.length : 0;
   const author = catalogue.author ? `by ${catalogue.author}` : "";
+  const editIntro =
+    ids_param[0] === catalogue.edit_id
+      ? "You have been invited to edit this list! ----- "
+      : "";
   const description =
-    catalogue.description ||
-    `List ${author} with ${listings} listings. ${date ? `Date: ${date}` : ""}`;
+    editIntro +
+    (catalogue.description ||
+      `List ${author} with ${listings} listings. ${
+        date ? `Date: ${date}` : ""
+      }`);
   const firstListingImage =
     listings &&
     catalogue.listings.find((listing) => listing.image_url) &&
@@ -170,64 +177,6 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
     catalogue.profile_picture_url ||
     firstListingImage ||
     "https://storage.googleapis.com/givespace-pictures/Logo%20Placeholder%202.png";
-  // if it is an edit link
-  // if (ids_param[0] === catalogue.edit_id) {
-  //   return (
-  //     <Head>
-  //       <title>{title}</title>
-  //       <meta property="og:title" content={title} />
-  //       <meta name="twitter:title" content={title} />
-
-  //       <meta
-  //         name="description"
-  //         content={
-  //           "You have been invited to edit this list! ----- " + description
-  //         }
-  //       />
-  //       <meta
-  //         property="og:description"
-  //         content={
-  //           "You have been invited to edit this list! ----- " + description
-  //         }
-  //       />
-  //       <meta
-  //         name="twitter:description"
-  //         content={
-  //           "You have been invited to edit this list! ----- " + description
-  //         }
-  //       />
-
-  //       <meta name="twitter:label1" value="Listings" />
-  //       <meta name="twitter:data1" value={listings} />
-  //       {date && (
-  //         <>
-  //           <meta name="twitter:label1" value="Date" />
-  //           <meta name="twitter:data1" value={date} />
-  //         </>
-  //       )}
-
-  //       <meta property="og:image" content={image} />
-  //       <meta property="og:image:alt" content="List image" />
-  //       {/* <meta property="og:image:type" content="image/jpeg" /> */}
-  //       <meta name="twitter:card" content={image} />
-  //       <meta name="twitter:image" content={image} />
-  //       <meta name="twitter:card" content="summary_large_image" />
-
-  //       <meta property="og:site_name" content="Kuoly" />
-  //       <meta
-  //         property="og:url"
-  //         content={`https://www.kuoly.com/ctg/${joinedIdsParam}`}
-  //       />
-  //       <meta name="theme-color" content={catalogue.header_color} />
-  //       <meta property="og:locale" content="en_US" />
-  //       <link
-  //         rel="icon"
-  //         type="text/png"
-  //         href="https://storage.googleapis.com/givespace-pictures/Logo%20Rounded.png"
-  //       />
-  //     </Head>
-  //   );
-  // } else {
   return (
     <Head>
       <title>{title}</title>

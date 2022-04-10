@@ -17,6 +17,7 @@ import {
   ListingModal,
 } from "../../containers";
 import { CatalogueHead } from "../../components";
+import Head from "next/head";
 
 type CatalogueProps = {
   catalogue_prop: CatalogueType;
@@ -73,10 +74,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   if (!router.query.ids) {
     return (
       <div className="message">
-        <CatalogueHead
+        <Head>
+          <title>List not found</title>
+        </Head>
+        {/* <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        />
+        /> */}
         Loading...
       </div>
     );
@@ -86,10 +90,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   if (catalogueQuery.error) {
     return (
       <div className="message">
-        <CatalogueHead
+        <Head>
+          <title>Query error</title>
+        </Head>
+        {/* <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        />
+        /> */}
         List not found
       </div>
     );
@@ -108,10 +115,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   if (!catalogue) {
     return (
       <div className="message">
-        <CatalogueHead
+        <Head>
+          <title>MIA catalogue</title>
+        </Head>
+        {/* <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        />
+        /> */}
         Loading...
       </div>
     );
@@ -178,13 +188,16 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
 
   return (
     <div className="catalogue-container">
-      <CatalogueHead
+      <Head>
+        <title>Final</title>
+      </Head>
+      {/* <CatalogueHead
         catalogue={catalogue || catalogue_prop}
         ids_param={
           (router.query && (router.query.ids as string[])) ||
           (params && params.ids)
         }
-      />
+      /> */}
       <div
         style={{
           flex: "1 0 auto",
