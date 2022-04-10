@@ -76,6 +76,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       <div className="message">
         <Head>
           <title>List not found</title>
+          <meta property="og:title" content="List not found" />
+          <meta name="twitter:title" content="List not found" />
         </Head>
         {/* <CatalogueHead
           catalogue={catalogue_prop}
@@ -92,6 +94,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       <div className="message">
         <Head>
           <title>Query error</title>
+          <meta property="og:title" content="Query error" />
+          <meta name="twitter:title" content="Query error" />
         </Head>
         {/* <CatalogueHead
           catalogue={catalogue_prop}
@@ -117,6 +121,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
       <div className="message">
         <Head>
           <title>MIA catalogue</title>
+          <meta property="og:title" content="MIA catalogue" />
+          <meta name="twitter:title" content="MIA catalogue" />
         </Head>
         {/* <CatalogueHead
           catalogue={catalogue_prop}
@@ -190,6 +196,8 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
     <div className="catalogue-container">
       <Head>
         <title>Final</title>
+        <meta property="og:title" content="Final" />
+        <meta name="twitter:title" content="Final" />
       </Head>
       {/* <CatalogueHead
         catalogue={catalogue || catalogue_prop}
