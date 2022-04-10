@@ -202,10 +202,7 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
         {date && (
           <>
             <meta name="twitter:label1" value="Date" />
-            <meta
-              name="twitter:data1"
-              value={new Date(catalogue.event_date).toLocaleDateString()}
-            />
+            <meta name="twitter:data1" value={date} />
           </>
         )}
 

@@ -474,6 +474,8 @@ export const fetchFullCatalogue = async (
   };
   const response = await axios(config);
   if (!response.data.errors) {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    console.log("response", response.data);
     catalogue = response.data.data.catalogues[0];
   } else {
     let config: AxiosRequestConfig = {
@@ -485,11 +487,12 @@ export const fetchFullCatalogue = async (
       data: editData,
     };
     const response = await axios(config);
+    console.log("edit_response", response.data);
     if (response.data.errors) {
       return null;
     }
     catalogue = response.data.data.catalogues[0];
   }
-  console.log("response", catalogue);
+  console.log("catalogue", catalogue);
   return catalogue;
 };
