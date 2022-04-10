@@ -474,8 +474,19 @@ export const fetchFullCatalogue = async (
   };
   const response = await axios(config);
   if (!response.data.errors) {
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    console.log("response", response.data);
+    let config: AxiosRequestConfig = {
+      method: "post",
+      url: fetchToUrl,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+    const response = await axios(config);
+    console.log("edit_response", response.data);
+    if (response.data.errors) {
+      return null;
+    }
     catalogue = response.data.data.catalogues[0];
   } else {
     let config: AxiosRequestConfig = {
