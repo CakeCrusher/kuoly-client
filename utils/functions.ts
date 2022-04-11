@@ -457,7 +457,7 @@ export const fetchFullCatalogue = async (
     }
   }`;
 
-  const config = (edit: boolean): AxiosRequestConfig => {
+  const config = (edit: boolean, id_arg: string): AxiosRequestConfig => {
     return {
       method: "post",
       url: fetchToUrl,
@@ -466,12 +466,17 @@ export const fetchFullCatalogue = async (
       },
       data: JSON.stringify({
         query,
-        variables: { [edit ? "edit_id" : "id"]: id },
+        variables: { [edit ? "edit_id" : "id"]: id_arg },
       }),
     };
   };
-  const idResponse = await axios(config(false));
-  const editResponse = await axios(config(true));
+  let idResponse = await axios(config(false, id));
+  if (!idResponse.data.errors) {
+    idResponse = await axios(
+      config(true, idResponse.data.data.catalogues[0].edit_id)
+    );
+  }
+  const editResponse = await axios(config(true, id));
   if (idResponse.data.errors && editResponse.data.errors) return null;
 
   catalogue = editResponse.data.errors

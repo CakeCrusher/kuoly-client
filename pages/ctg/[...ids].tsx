@@ -108,6 +108,7 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
 
   if (!catalogue) {
     console.log("cataloge_prop", catalogue_prop.title);
+    console.log("params", params);
     return (
       <div className="message">
         <Head>
