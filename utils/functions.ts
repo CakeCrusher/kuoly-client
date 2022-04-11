@@ -471,16 +471,13 @@ export const fetchFullCatalogue = async (
     };
   };
   let idResponse = await axios(config(false, id));
+  let edit_id = id;
   if (!idResponse.data.errors) {
-    idResponse = await axios(
-      config(true, idResponse.data.data.catalogues[0].edit_id)
-    );
+    edit_id = idResponse.data.data.catalogues[0].edit_id;
   }
-  const editResponse = await axios(config(true, id));
+  const editResponse = await axios(config(true, edit_id));
   if (idResponse.data.errors && editResponse.data.errors) return null;
 
-  catalogue = editResponse.data.errors
-    ? idResponse.data.data.catalogues[0]
-    : editResponse.data.data.catalogues[0];
+  catalogue = editResponse.data.data.catalogues[0];
   return catalogue;
 };
