@@ -477,6 +477,5 @@ export const fetchFullCatalogue = async (
   catalogue = editResponse.data.errors
     ? idResponse.data.data.catalogues[0]
     : editResponse.data.data.catalogues[0];
-  console.log("catalogue", catalogue);
   return catalogue;
 };

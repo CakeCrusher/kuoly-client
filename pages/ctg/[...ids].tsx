@@ -74,15 +74,10 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   if (!router.query.ids) {
     return (
       <div className="message">
-        <Head>
-          <title>List not found</title>
-          <meta property="og:title" content="List not found" />
-          <meta name="twitter:title" content="List not found" />
-        </Head>
-        {/* <CatalogueHead
+        <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        /> */}
+        />
         Loading...
       </div>
     );
@@ -92,15 +87,10 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   if (catalogueQuery.error) {
     return (
       <div className="message">
-        <Head>
-          <title>Query error</title>
-          <meta property="og:title" content="Query error" />
-          <meta name="twitter:title" content="Query error" />
-        </Head>
-        {/* <CatalogueHead
+        <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        /> */}
+        />
         List not found
       </div>
     );
@@ -117,12 +107,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   }
 
   if (!catalogue) {
+    console.log("cataloge_prop", catalogue_prop.title);
     return (
       <div className="message">
         <Head>
-          <title>MIA catalogue</title>
-          <meta property="og:title" content="MIA catalogue" />
-          <meta name="twitter:title" content="MIA catalogue" />
+          <title>{catalogue_prop.title}</title>
+          <meta property="og:title" content={catalogue_prop.title} />
+          <meta name="twitter:title" content={catalogue_prop.title} />
         </Head>
         {/* <CatalogueHead
           catalogue={catalogue_prop}
@@ -194,18 +185,13 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
 
   return (
     <div className="catalogue-container">
-      <Head>
-        <title>Final</title>
-        <meta property="og:title" content="Final" />
-        <meta name="twitter:title" content="Final" />
-      </Head>
-      {/* <CatalogueHead
+      <CatalogueHead
         catalogue={catalogue || catalogue_prop}
         ids_param={
           (router.query && (router.query.ids as string[])) ||
           (params && params.ids)
         }
-      /> */}
+      />
       <div
         style={{
           flex: "1 0 auto",
