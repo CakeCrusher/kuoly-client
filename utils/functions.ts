@@ -457,27 +457,21 @@ export const fetchFullCatalogue = async (
     }
   }`;
 
-  const config = (edit: boolean, id_arg: string): AxiosRequestConfig => {
-    return {
-      method: "post",
-      url: fetchToUrl,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: JSON.stringify({
-        query,
-        variables: { [edit ? "edit_id" : "id"]: id_arg },
-      }),
-    };
+  const config: AxiosRequestConfig = {
+    method: "post",
+    url: fetchToUrl,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      query,
+      variables: { id: id, edit_id: id },
+    }),
   };
-  let idResponse = await axios(config(false, id));
-  let edit_id = id;
-  if (!idResponse.data.errors) {
-    edit_id = idResponse.data.data.catalogues[0].edit_id;
-  }
-  const editResponse = await axios(config(true, edit_id));
-  if (idResponse.data.errors && editResponse.data.errors) return null;
+  let response = await axios(config);
+  if (response.data.errors) return null;
 
-  catalogue = editResponse.data.data.catalogues[0];
+  catalogue = response.data.data.catalogues[0];
+  console.log("catalogue", catalogue);
   return catalogue;
 };

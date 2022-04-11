@@ -107,14 +107,23 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
   }
 
   if (!catalogue) {
-    console.log("cataloge_prop", catalogue_prop.title);
+    console.log(
+      "cataloge_prop",
+      catalogue_prop ? catalogue_prop.title : "FAIL"
+    );
     console.log("params", params);
     return (
       <div className="message">
         <Head>
-          <title>{catalogue_prop.title}</title>
-          <meta property="og:title" content={catalogue_prop.title} />
-          <meta name="twitter:title" content={catalogue_prop.title} />
+          <title>{catalogue_prop ? catalogue_prop.title : "FAIL"}</title>
+          <meta
+            property="og:title"
+            content={catalogue_prop ? catalogue_prop.title : "FAIL"}
+          />
+          <meta
+            name="twitter:title"
+            content={catalogue_prop ? catalogue_prop.title : "FAIL"}
+          />
         </Head>
         {/* <CatalogueHead
           catalogue={catalogue_prop}
