@@ -114,7 +114,7 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
     console.log("params", params);
     return (
       <div className="message">
-        <Head>
+        {/* <Head>
           <title>{catalogue_prop ? catalogue_prop.title : "FAIL"}</title>
           <meta
             property="og:title"
@@ -124,11 +124,11 @@ const Catalogue: React.FC<CatalogueProps> = ({ catalogue_prop, params }) => {
             name="twitter:title"
             content={catalogue_prop ? catalogue_prop.title : "FAIL"}
           />
-        </Head>
-        {/* <CatalogueHead
+        </Head> */}
+        <CatalogueHead
           catalogue={catalogue_prop}
           ids_param={params && params.ids}
-        /> */}
+        />
         Loading...
       </div>
     );
