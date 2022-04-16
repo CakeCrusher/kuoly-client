@@ -96,6 +96,7 @@ interface UseMarkedForDeletion {
   setMarkedForDeletion: (value: MarkedForDeletion[]) => void;
 }
 
+// Info on how data will be restored
 interface DependentCacheItems {
   id: string;
   fragment: DocumentNode;

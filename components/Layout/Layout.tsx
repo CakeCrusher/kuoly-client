@@ -20,6 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { removeMFD, setRemoveMFD } = useRemoveMFD();
   const { markedForDeletion, setMarkedForDeletion } = useMarkedForDeletion();
 
+  // Listens to remove MFD
   useEffect(() => {
     // handling undo and clearing of undo list
     if (
@@ -32,6 +33,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         (mfd: MarkedForDeletion) => mfd.id === removeMFD.id
       )!;
 
+      // Restore cache if undo
       if (removeMFD.isUndo) {
         currentMFD.dependentCacheItems.forEach((dci: DependentCacheItems) => {
           cache.writeFragment(dci);
@@ -39,6 +41,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       } else {
       }
 
+      // Remove the current setMarkedForDeletion object
       setMarkedForDeletion(
         markedForDeletion.filter(
           (mfd: MarkedForDeletion) => mfd.id !== removeMFD.id

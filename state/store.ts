@@ -15,10 +15,10 @@ export const useFieldEditing = (): UseFieldEditing => {
   return { fieldEditing, setFieldEditing };
 };
 
+// Array keeping track of items marked for deletion
 const markedForDeletionVar: ReactiveVar<MarkedForDeletion[]> = makeVar<
   MarkedForDeletion[]
 >([]);
-
 export const useMarkedForDeletion = (): UseMarkedForDeletion => {
   const markedForDeletion = useReactiveVar(markedForDeletionVar);
   const setMarkedForDeletion = (value: MarkedForDeletion[]) => {
@@ -27,6 +27,7 @@ export const useMarkedForDeletion = (): UseMarkedForDeletion => {
   return { markedForDeletion, setMarkedForDeletion };
 };
 
+// Notifies if object is being deleted or "undoed"
 const removeMFDVar: ReactiveVar<RemoveMFD> = makeVar<RemoveMFD>(null);
 type Remove = {
   removeMFD: RemoveMFD;

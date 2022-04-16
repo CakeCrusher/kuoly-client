@@ -73,7 +73,7 @@ const getDependentCacheItem = (
   cacheId: string,
   fragment: DocumentNode,
   fragmentName: string
-) => {
+): DependentCacheItems => {
   return {
     id: cacheId,
     fragment,
@@ -100,11 +100,13 @@ export const handleDeletion = (
 
   let dependentCacheItems: DependentCacheItems[] = [];
 
+  // Conditional dependant cache items for each kind of object
   if (type === "Label") {
     dependentCacheItems.push(
       getDependentCacheItem(cacheId, LABEL_FIELDS, "AllLabelFields")
     );
     // TODO: standardize undo
+    // Because of Label's cascadeing delete we need to store data which was
     if (catalogue) {
       catalogue.listings?.forEach((li: Listing) => {
         if (li.labels) {
@@ -134,11 +136,13 @@ export const handleDeletion = (
 
   // if it will contain undo functionality
   if (textField && setRemoveMFD && markedForDeletion && setMarkedForDeletion) {
+    // Initiate timeout to remove the item from the databse and unpdate state
     const deleteTimeout = setTimeout(() => {
       deletionMutation();
       setRemoveMFD({ id: cacheId, isUndo: false });
     }, 5000);
 
+    // Update markedForDeletion state
     setMarkedForDeletion([
       ...markedForDeletion,
       {
