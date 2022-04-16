@@ -105,7 +105,7 @@ const CatalogueHead: React.FC<CatalogueHeadProps> = ({
       const price =
         listing.show_price && listing.price ? `($${listing.price})` : "";
       const description =
-        listing.description || `${price} Listing in "${catalogue.title}"}`;
+        listing.description || `${price} Listing in "${catalogue.title}"`;
       const image =
         listing.image_url ||
         catalogue.header_image_url ||
