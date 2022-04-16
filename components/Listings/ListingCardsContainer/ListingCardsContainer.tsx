@@ -20,6 +20,7 @@ import {
 } from "@dnd-kit/sortable";
 import { newOrdering } from "../../../utils/functions";
 import { useListingsFilter } from "../../../state/store";
+import { useUser } from "../../../lib/UserProvider";
 
 type Props = {
   isEditing: boolean;
@@ -35,6 +36,7 @@ const ListingCardsContainer: React.FC<Props> = ({
   handleSelectListing,
 }) => {
   const { listingsFilter } = useListingsFilter();
+  const { userId } = useUser();
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [listingIds, setListingIds] = useState<string[]>(
     listings.map((listing) => listing.id)
@@ -119,6 +121,7 @@ const ListingCardsContainer: React.FC<Props> = ({
                   key={listing.id}
                   listing={listing}
                   isEditing={isEditing}
+                  isCreator={catalogue.user_id === userId}
                   selectListing={handleSelectListing}
                   deleteListing={deleteListing}
                   hide={listing.id === draggingId}
@@ -129,6 +132,7 @@ const ListingCardsContainer: React.FC<Props> = ({
               {draggingId && (
                 <ListingCard
                   listing={listingDragging}
+                  isCreator={catalogue.user_id === userId}
                   isEditing={isEditing}
                   selectListing={handleSelectListing}
                   deleteListing={deleteListing}
@@ -141,6 +145,7 @@ const ListingCardsContainer: React.FC<Props> = ({
           listings.map((listing: Listing) => (
             <ListingCard
               key={listing.id}
+              isCreator={catalogue.user_id === userId}
               listing={listing}
               isEditing={isEditing}
               selectListing={handleSelectListing}

@@ -13,6 +13,7 @@ import Link from "next/link";
 type Props = {
   isEditing: boolean;
   listing: Listing;
+  isCreator: boolean;
   selectListing: (listingId: string) => void;
   deleteListing: (id: string) => void;
   hide?: boolean;
@@ -22,6 +23,7 @@ type Props = {
 const ListingCard: React.FC<Props> = ({
   isEditing,
   listing,
+  isCreator,
   selectListing,
   deleteListing,
   hide,
@@ -79,20 +81,18 @@ const ListingCard: React.FC<Props> = ({
         {...listeners}
         {...attributes}
       >
-        {isEditing && (
-          <>
-            {listingsFilter.type === "custom" && (
-              <MdOutlineDragIndicator className="drag-handle-icon" />
-            )}
-            <button
-              onMouseDown={(e) => e.stopPropagation()}
-              onTouchStart={(e) => e.stopPropagation()}
-              onClick={handleDelete}
-              className="btn-circle neg delete-btn icon-button"
-            >
-              <FiX size="1rem" />
-            </button>
-          </>
+        {listingsFilter.type === "custom" && isEditing && (
+          <MdOutlineDragIndicator className="drag-handle-icon" />
+        )}
+        {isEditing && isCreator && (
+          <button
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onClick={handleDelete}
+            className="btn-circle neg delete-btn icon-button"
+          >
+            <FiX size="1rem" />
+          </button>
         )}
       </div>
       <div className="card-body listing-card-body">

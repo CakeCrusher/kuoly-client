@@ -21,6 +21,7 @@ import useLabelApolloHooks from "../../graphql/hooks/label";
 import { useListingsFilter } from "../../state/store";
 import { newOrdering } from "../../utils/functions";
 import Label from "./Label";
+import { useUser } from "../../lib/UserProvider";
 
 type Props = {
   isEditing?: boolean;
@@ -29,6 +30,7 @@ type Props = {
 };
 
 const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
+  const { userId } = useUser();
   const [isAdding, setIsAdding] = useState(false);
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [labelIds, setLabelIds] = useState<string[]>(
@@ -164,6 +166,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
               faint={!listingsFilter.labelIds.includes(label.id)}
               deleteLabel={(id) => deleteLabel(id, catalogue)}
               hide={label.id === draggingId}
+              isCreator={catalogue.user_id === userId}
             />
           ))}
         </SortableContext>

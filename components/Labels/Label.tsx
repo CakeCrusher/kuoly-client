@@ -13,6 +13,7 @@ type LabelProps = {
   onClick?: () => void;
   className?: string;
   hide?: boolean;
+  isCreator?: boolean;
 };
 
 const Label: React.FC<LabelProps> = ({
@@ -22,6 +23,7 @@ const Label: React.FC<LabelProps> = ({
   label,
   onClick,
   hide,
+  isCreator,
 }) => {
   const { listingsFilter, setListingsFilter } = useListingsFilter();
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -72,15 +74,16 @@ const Label: React.FC<LabelProps> = ({
           <MdOutlineDragIndicator />
         </div>
       ) : null}
-
-      <button
-        onMouseDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onClick={handleDeleteClick}
-        className="f-row f-center btn-circle neg delete-label"
-      >
-        <FiX size="1rem" />
-      </button>
+      {isCreator && (
+        <button
+          onMouseDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onClick={handleDeleteClick}
+          className="f-row f-center btn-circle neg delete-label"
+        >
+          <FiX size="1rem" />
+        </button>
+      )}
     </div>
   );
 };
