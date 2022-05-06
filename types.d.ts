@@ -26,6 +26,7 @@ interface CatalogueStub {
   profile_picture_url: string | null;
   header_image_url: string | null;
   author: string | null;
+  views: number;
 }
 
 type ListingStub = {

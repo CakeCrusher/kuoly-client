@@ -1,15 +1,18 @@
 import React from "react";
 import Link from "next/link";
 import { CreateCatalogueButton } from "../components";
-import { MY_CATALOGUES } from "../graphql/schemas";
+import { MY_CATALOGUES, POPULAR_CATALOGUES } from "../graphql/schemas";
 import { useApolloClient, useQuery } from "@apollo/client";
 
 import { FiEdit, FiShare2 } from "react-icons/fi";
 import { BiPalette } from "react-icons/bi";
 import { useUser } from "../lib/UserProvider";
 import Head from "next/head";
+import { CatalogueSelectItems } from "../containers";
 
 const Home = () => {
+  const popularCatalogue = useQuery(POPULAR_CATALOGUES);
+  console.log("popularCatalogue", popularCatalogue.data);
   // TODO: get the client data instead of making a query
   const myCatalogues = useQuery(MY_CATALOGUES);
 
@@ -88,6 +91,14 @@ const Home = () => {
               alt="banner-kuoly"
             />
           </div>
+        </div>
+      </section>
+      <section className="popular-section">
+        <div className="content-container">
+          <div className="text">Popular Lists</div>
+          {popularCatalogue.data && popularCatalogue.data.catalogues.length ? (
+            <CatalogueSelectItems catalogues={popularCatalogue.data.catalogues} showcase={true} /> 
+          ) : null}
         </div>
       </section>
       <section className="description-section">

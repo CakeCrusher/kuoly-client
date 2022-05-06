@@ -24,6 +24,7 @@ export const CATALOGUE_LIST_ITEM_FIELDS = gql`
     created
     updated
     author
+    views
     header_image_url
     profile_picture_url
     header_color

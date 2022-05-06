@@ -36,6 +36,15 @@ export const GET_CATALOGUE = gql`
   }
 `;
 
+export const POPULAR_CATALOGUES = gql`
+  ${CATALOGUE_LIST_ITEM_FIELDS}
+  query Catalogues {
+    catalogues(all: true) {
+      ...CatalogueListItemFields
+    }
+  }
+`;
+
 export const MY_CATALOGUES = gql`
   ${CATALOGUE_LIST_ITEM_FIELDS}
   query MyCatalogues {
