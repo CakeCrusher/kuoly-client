@@ -12,15 +12,15 @@
     align-items: center;
   }
   &.showcase {
-    justify-content: center;
+    justify-content: start;
     @media @mobile {
-      justify-content: start;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
     flex-wrap: nowrap;
     overflow-x: scroll;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+
     margin-bottom: 0;
   }
 
