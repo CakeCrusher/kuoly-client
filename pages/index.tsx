@@ -93,14 +93,14 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="popular-section">
+      {/* <section className="popular-section">
         <div className="content-container">
           <div className="text">Popular Lists</div>
           {popularCatalogue.data && popularCatalogue.data.catalogues.length ? (
             <CatalogueSelectItems catalogues={popularCatalogue.data.catalogues} showcase={true} /> 
           ) : null}
         </div>
-      </section>
+      </section> */}
       <section className="description-section">
         <div className="video-container">
           <div className="description">How it Works</div>
