@@ -5,9 +5,10 @@ import { handleCopy } from "../../utils/functions";
 
 type Props = {
   catalogue: CatalogueStub;
+  showcase?: boolean;
 };
 
-const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
+const CatalogueCard: React.FC<Props> = ({ catalogue, showcase }) => {
   const handleShareClick = (evt: React.SyntheticEvent<HTMLButtonElement>) => {
     // This card will likely be wrapped in a link
     // preventDefault will stop navigation
@@ -24,6 +25,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
   return (
     <div className="card f-col catalogue-card">
       {/*TODO: need to somehow maintain aspect ratio of 6:1*/}
+      <div className="view-count">{catalogue.views} views</div>
       <div
         className="card-header"
         style={{
@@ -64,7 +66,9 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
             ))}
         </div>
         <div className="f-row options-row">
-          <DeleteCatalogueButton id={catalogue.id} />
+          {!showcase && (
+            <DeleteCatalogueButton id={catalogue.id} />
+          )}
           <CopyToolTip text="Copy list link">
             <button className="btn f-row option" onClick={handleShareClick}>
               <div>

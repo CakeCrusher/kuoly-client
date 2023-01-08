@@ -12,9 +12,10 @@ import { FiPlus } from "react-icons/fi";
 
 type Props = {
   catalogues: CatalogueStub[];
+  showcase?: boolean;
 };
 
-const CatalogueCards: React.FC<Props> = ({ catalogues }) => {
+const CatalogueCards: React.FC<Props> = ({ catalogues, showcase }) => {
   // TODO: Replace this with something like useUserApolloHooks
   const router = useRouter();
   //@ts-ignore
@@ -34,22 +35,25 @@ const CatalogueCards: React.FC<Props> = ({ catalogues }) => {
   }, [loading, data]);
 
   return (
-    <div className="f-row catalogue-cards-container">
+    <div className={`f-row catalogue-cards-container ${showcase ? "showcase" : ""}`}>
       {catalogues.map((catalogue: CatalogueStub) => (
         <Link href={`/ctg/${catalogue.id}`}>
           <a className="catalogue-card-wrapper">
-            <CatalogueCard catalogue={catalogue} />
+            <CatalogueCard catalogue={catalogue} showcase={showcase} />
           </a>
         </Link>
       ))}
-      <CreateCatalogueButton className="catalogue-card-wrapper">
-        <div className="card f-col catalogue-card add-catalogue">
-          <div className="f-col card-body">
-            <div className="text">Create a List</div>
-            <FiPlus className="add-icon" size="3rem" />
+      {!showcase && (
+        <CreateCatalogueButton className="catalogue-card-wrapper">
+          <div className="card f-col catalogue-card add-catalogue">
+            <div className="f-col card-body">
+              <div className="text">Create a List</div>
+              <FiPlus className="add-icon" size="3rem" />
+            </div>
           </div>
-        </div>
-      </CreateCatalogueButton>
+        </CreateCatalogueButton>
+      )}
+
     </div>
   );
 };
