@@ -314,6 +314,15 @@ export const filteredListings = (
       });
     });
   }
+  // exclude if it has label with id in listingsFilter.excludeLabelIds
+  if (listingsFilter.excludeLabelIds.length) {
+    newListings = newListings.filter((listing: Listing) => {
+      if (!listing.labels) return true;
+      return !listing.labels.some((listingLabel: ListingLabel) => {
+        return listingsFilter.excludeLabelIds.includes(listingLabel.label.id);
+      });
+    });
+  }
   switch (listingsFilter.type) {
     case "date":
       return newListings.sort((a: Listing, b: Listing) => {

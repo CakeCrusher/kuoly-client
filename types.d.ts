@@ -150,4 +150,5 @@ declare enum ListingFilterType {
 type ListingsFilter = {
   type: string;
   labelIds: string[];
+  excludeLabelIds: string[];
 };

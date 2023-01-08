@@ -14,6 +14,7 @@ type LabelProps = {
   className?: string;
   hide?: boolean;
   isCreator?: boolean;
+  exclude?: boolean;
 };
 
 const Label: React.FC<LabelProps> = ({
@@ -24,6 +25,7 @@ const Label: React.FC<LabelProps> = ({
   onClick,
   hide,
   isCreator,
+  exclude,
 }) => {
   const { listingsFilter, setListingsFilter } = useListingsFilter();
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -41,6 +43,9 @@ const Label: React.FC<LabelProps> = ({
       setListingsFilter({
         ...listingsFilter,
         labelIds: listingsFilter.labelIds.filter(
+          (labelId) => labelId !== label.id
+        ),
+        excludeLabelIds: listingsFilter.excludeLabelIds.filter(
           (labelId) => labelId !== label.id
         ),
       });
@@ -62,7 +67,7 @@ const Label: React.FC<LabelProps> = ({
       onClick={handleClick}
       className={`label f-center ${
         isEditing && deleteLabel ? "show-delete" : ""
-      } ${onClick ? "clickable" : ""} ${hide ? "hide" : faint && "faint"}`}
+      } ${onClick ? "clickable" : ""} ${hide ? "hide" : faint && "faint"} ${exclude ? "exclude" : ""}`}
       ref={setNodeRef}
       {...listeners}
       {...attributes}

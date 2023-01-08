@@ -44,6 +44,7 @@ export const useRemoveMFD = (): Remove => {
 const listingsFilterVar: ReactiveVar<ListingsFilter> = makeVar<ListingsFilter>({
   type: "custom",
   labelIds: [],
+  excludeLabelIds: [],
 });
 type Filter = {
   listingsFilter: ListingsFilter;

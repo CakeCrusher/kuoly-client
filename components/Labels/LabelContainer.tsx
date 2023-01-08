@@ -80,10 +80,21 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
   const toggleListingFilter = (listingId: string) => {
     // if (!isEditing) {
     // if listingsFilter.labelIds includes listingId, remove it
+    // create a switch for this
+    console.log(listingsFilter);
     if (listingsFilter.labelIds.includes(listingId)) {
       setListingsFilter({
         ...listingsFilter,
         labelIds: listingsFilter.labelIds.filter(
+          (labelId) => labelId !== listingId
+        ),
+        excludeLabelIds: [...listingsFilter.excludeLabelIds, listingId],
+      });
+    }
+    else if (listingsFilter.excludeLabelIds.includes(listingId)) {
+      setListingsFilter({
+        ...listingsFilter,
+        excludeLabelIds: listingsFilter.excludeLabelIds.filter(
           (labelId) => labelId !== listingId
         ),
       });
@@ -164,6 +175,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
               isEditing={isEditing}
               onClick={() => toggleListingFilter(label.id)}
               faint={!listingsFilter.labelIds.includes(label.id)}
+              exclude={listingsFilter.excludeLabelIds.includes(label.id)}
               deleteLabel={(id) => deleteLabel(id, catalogue)}
               hide={label.id === draggingId}
               isCreator={catalogue.user_id === userId}
@@ -179,6 +191,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
               isEditing={isEditing}
               onClick={() => toggleListingFilter(labelDragging.id)}
               faint={!listingsFilter.labelIds.includes(labelDragging.id)}
+              exclude={listingsFilter.excludeLabelIds.includes(labelDragging.id)}
               deleteLabel={(id) => deleteLabel(id, catalogue)}
             />
           )}

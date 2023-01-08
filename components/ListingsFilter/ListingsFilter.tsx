@@ -19,7 +19,7 @@ const ListingsFilter: React.FC = () => {
       <Dropdown
         value={listingsFilter.type}
         handleSubmit={(value) =>
-          setListingsFilter({ type: value, labelIds: listingsFilter.labelIds })
+          setListingsFilter({...listingsFilter, type: value})
         }
         fieldEditingProps={{
           key: "listingsFilterType",
